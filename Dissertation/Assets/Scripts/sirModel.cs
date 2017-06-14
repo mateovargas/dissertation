@@ -170,11 +170,11 @@ public class sirModel{
 		Dictionary<int, int> susceptible_data = new Dictionary<int, int> ();
 		Dictionary<int, int> infected_data = new Dictionary<int, int> ();
 		Dictionary<int, int> recovered_data = new Dictionary<int, int> ();
-		test_model = new sirModel (90, 10, ((double)1/(double)2), ((double)1/(double)3));
+		test_model = new sirModel (990, 10, ((double)1/(double)2), ((double)1/(double)3));
 
-		Dictionary<int, string> population = test_model.get_population();
+		//Dictionary<int, string> population = test_model.get_population();
 
-		if (population.Count != 100) {
+		/**if (population.Count != 100) {
 
 			Console.WriteLine("Error in model initialization. Wrong number of individuals.");
 
@@ -185,7 +185,7 @@ public class sirModel{
 				Console.WriteLine ("The current individual is: " + i +
 					" and the status is: " + population [i]);
 			}
-		}
+		}**/
 
 		Console.WriteLine ("");
 		Console.WriteLine ("The test model has a susceptible count of: " + test_model.susceptible_count);
@@ -202,7 +202,7 @@ public class sirModel{
 
 		test_model.infect_and_recover ();
 
-		for (int i = 0; i < population.Count; i++) {
+		/**for (int i = 0; i < population.Count; i++) {
 			Console.WriteLine ("The current individual is: " + i +
 				" and the status is: " + population [i]);
 		}
@@ -219,10 +219,10 @@ public class sirModel{
 		Console.WriteLine ("After 1 recovery cycle, the test model has an infection count of: " 
 							+ test_model.infected_count);
 		Console.WriteLine ("After 1 recovery cycle, the test model has a recovered count of: " 
-							+ test_model.recovered_count);
+							+ test_model.recovered_count);**/
 
 		int t = 1;
-		while (test_model.get_recovered_count() != 100) {
+		while (test_model.get_recovered_count() != 1000) {
 			
 			test_model.infect_and_recover ();
 
