@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.IO;
 //using UnityEngine;
 
 
@@ -128,12 +129,15 @@ public class sirModel{
 
 	}
 
-	//Method to infect a certain amount of people on the given day
-	public void infect(){
+	//Method to infect and recover a certain amount of people on the given day.
+	public void infect_and_recover(){
 
 
 		//THIS WILL CHANGE WHEN SWITCHING TO THE GAME. WILL BE BASED ON ACTUAL GAME COLLISIONS
 		double rate_of_infection = -(contacts) * ((double)susceptible_count / (double)total_pop) * (infected_count);
+		double rate_of_recovery = recovery_rate * (infected_count);
+
+		//loop over to infect
 		int i = 0;
 		for (int j = 0; j < population.Count; j++) {
 
@@ -144,9 +148,23 @@ public class sirModel{
 				i = i - 1;
 			}
 		}
+
+		//loop over to recover
+		int k = 0;
+		for (int j = population.Count-1; j >= 0; j--){
+
+			if (population [j] == "infected" && k < rate_of_recovery) {
+
+				population [j] = "recovered";
+				infected_count--;
+				recovered_count++;
+				k = k + 1;
+
+			}
+		}
 	}
 
-	//Method to recover a certain amount of people on the given day
+	/**Method to recover a certain amount of people on the given day
 	public void recover(){
 
 		Console.WriteLine ("The recovery rate is : " + recovery_rate.ToString ("N8"));
@@ -165,11 +183,14 @@ public class sirModel{
 
 			}
 		}
-	}
+	}**/
 
 	public static void Main(string[] args){
 
 		sirModel test_model;
+		Dictionary<int, int> susceptible_data = new Dictionary<int, int> ();
+		Dictionary<int, int> infected_data = new Dictionary<int, int> ();
+		Dictionary<int, int> recovered_data = new Dictionary<int, int> ();
 		test_model = new sirModel (90, 10, ((double)1/(double)2), ((double)1/(double)3));
 
 		Dictionary<int, string> population = test_model.get_population();
@@ -195,7 +216,12 @@ public class sirModel{
 		Console.WriteLine ("The test model has a recovery rate of: " + test_model.recovery_rate.ToString("N8"));
 		Console.WriteLine ("The test model has a population of: " + test_model.total_pop);
 		Console.WriteLine ("Testing infection method.");
-		test_model.infect ();
+
+		susceptible_data.Add (0, test_model.get_susceptible_count ());
+		infected_data.Add (0, test_model.get_infected_count ());
+		recovered_data.Add (0, test_model.get_recovered_count ());
+
+		test_model.infect_and_recover ();
 
 		for (int i = 0; i < population.Count; i++) {
 			Console.WriteLine ("The current individual is: " + i +
@@ -208,13 +234,6 @@ public class sirModel{
 							+ test_model.infected_count);
 
 		Console.WriteLine ("");
-		Console.WriteLine ("Testing recovery model.");
-		test_model.recover ();
-	
-		for (int i = 0; i < population.Count; i++) {
-			Console.WriteLine ("The current individual is: " + i +
-				" and the status is: " + population [i]);
-		}
 
 		Console.WriteLine ("After 1 recovery cycle, the test model has a susceptible count of: " 
 							+ test_model.susceptible_count);
@@ -223,16 +242,52 @@ public class sirModel{
 		Console.WriteLine ("After 1 recovery cycle, the test model has a recovered count of: " 
 							+ test_model.recovered_count);
 
-		/**while (test_model.get_recovered_count () != 100) {
-		
-			test_model.infect ();
-			test_model.recover ();
-			Console.WriteLine ("           ");
-			for (int i = 0; i < population.Count; i++) {
-				Console.WriteLine ("The current individual is: " + i +
-					" and the status is: " + population [i]);
-			}
-		}**/
+		int t = 1;
+		while (test_model.get_recovered_count() != 100) {
+			
+			test_model.infect_and_recover ();
 
+			susceptible_data.Add (t, test_model.get_susceptible_count ());
+			infected_data.Add (t, test_model.get_infected_count ());
+			recovered_data.Add (t, test_model.get_recovered_count ());
+
+			t = t + 1;
+
+		}
+
+
+		using (var writer_s = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/susceptible.csv")) {
+
+			for (int x = 0; x < susceptible_data.Count; x++) {
+				string item_one_s = x.ToString();
+				string item_two_s = susceptible_data[x].ToString();
+				string line = string.Format ("{0}, {1}\n", item_one_s, item_two_s);
+				writer_s.WriteLine (line);
+				writer_s.Flush ();
+			}
+		}
+
+
+		using (var writer_i = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/infected.csv")) {
+
+			for (int x = 0; x < infected_data.Count; x++) {
+				string item_one_i = x.ToString();
+				string item_two_i = infected_data[x].ToString();
+				string line = string.Format ("{0}, {1}\n", item_one_i, item_two_i);
+				writer_i.WriteLine (line);
+				writer_i.Flush ();
+			}
+		}
+
+		using (var writer_r = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/recovered.csv")) {
+
+			for (int x = 0; x < recovered_data.Count; x++) {
+				string item_one_r = x.ToString();
+				string item_two_r = recovered_data[x].ToString();
+				string line = string.Format ("{0}, {1}\n", item_one_r, item_two_r);
+				writer_r.WriteLine (line);
+				writer_r.Flush ();
+			}
+		}
 	}
 }
