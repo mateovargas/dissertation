@@ -170,7 +170,7 @@ public class sirModel{
 		Dictionary<int, int> susceptible_data = new Dictionary<int, int> ();
 		Dictionary<int, int> infected_data = new Dictionary<int, int> ();
 		Dictionary<int, int> recovered_data = new Dictionary<int, int> ();
-		test_model = new sirModel (7900000, 10, ((double)1/(double)2), ((double)1/(double)3));
+		test_model = new sirModel (90, 10, ((double)1/(double)2), ((double)1/(double)3));
 
 		Dictionary<int, string> population = test_model.get_population();
 
