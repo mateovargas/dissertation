@@ -163,35 +163,14 @@ public class sirModel{
 			}
 		}
 	}
-
-	/**Method to recover a certain amount of people on the given day
-	public void recover(){
-
-		Console.WriteLine ("The recovery rate is : " + recovery_rate.ToString ("N8"));
-		Console.WriteLine ("The infected count is: " + infected_count);
-		double rate_of_recovery = recovery_rate * (infected_count);
-		Console.WriteLine ("The rate of recovery is: " + rate_of_recovery.ToString ("N8"));
-		int i = 0;
-		for (int j = population.Count-1; j >= 0; j--){
-
-			if (population [j] == "infected" && i < rate_of_recovery) {
-
-				population [j] = "recovered";
-				infected_count--;
-				recovered_count++;
-				i = i + 1;
-
-			}
-		}
-	}**/
-
+		
 	public static void Main(string[] args){
 
 		sirModel test_model;
 		Dictionary<int, int> susceptible_data = new Dictionary<int, int> ();
 		Dictionary<int, int> infected_data = new Dictionary<int, int> ();
 		Dictionary<int, int> recovered_data = new Dictionary<int, int> ();
-		test_model = new sirModel (90, 10, ((double)1/(double)2), ((double)1/(double)3));
+		test_model = new sirModel (7900000, 10, ((double)1/(double)2), ((double)1/(double)3));
 
 		Dictionary<int, string> population = test_model.get_population();
 
@@ -261,7 +240,7 @@ public class sirModel{
 			for (int x = 0; x < susceptible_data.Count; x++) {
 				string item_one_s = x.ToString();
 				string item_two_s = susceptible_data[x].ToString();
-				string line = string.Format ("{0}, {1}\n", item_one_s, item_two_s);
+				string line = string.Format ("{0}, {1}", item_one_s, item_two_s);
 				writer_s.WriteLine (line);
 				writer_s.Flush ();
 			}
@@ -273,7 +252,7 @@ public class sirModel{
 			for (int x = 0; x < infected_data.Count; x++) {
 				string item_one_i = x.ToString();
 				string item_two_i = infected_data[x].ToString();
-				string line = string.Format ("{0}, {1}\n", item_one_i, item_two_i);
+				string line = string.Format ("{0}, {1}", item_one_i, item_two_i);
 				writer_i.WriteLine (line);
 				writer_i.Flush ();
 			}
@@ -284,7 +263,7 @@ public class sirModel{
 			for (int x = 0; x < recovered_data.Count; x++) {
 				string item_one_r = x.ToString();
 				string item_two_r = recovered_data[x].ToString();
-				string line = string.Format ("{0}, {1}\n", item_one_r, item_two_r);
+				string line = string.Format ("{0}, {1}", item_one_r, item_two_r);
 				writer_r.WriteLine (line);
 				writer_r.Flush ();
 			}
