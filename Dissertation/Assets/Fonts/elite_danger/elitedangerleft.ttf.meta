@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0f9d2bd00a7804a5ead595565475a58d
+timeCreated: 1497870802
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Elite Danger Leftalic
+  fontNames:
+  - Elite Danger Leftalic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

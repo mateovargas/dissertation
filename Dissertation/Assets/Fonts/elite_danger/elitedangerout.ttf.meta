@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1ca9f9ea77f6a4323bbcb2a6f2b4a076
+timeCreated: 1497870802
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Elite Danger Outline
+  fontNames:
+  - Elite Danger Outline
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

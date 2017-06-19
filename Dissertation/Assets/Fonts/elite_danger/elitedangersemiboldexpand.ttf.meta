@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 102381855af5c418cafe16691855d8ae
+timeCreated: 1497870802
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Elite Danger Semi-Bold Expanded
+  fontNames:
+  - Elite Danger Semi-Bold Expanded
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

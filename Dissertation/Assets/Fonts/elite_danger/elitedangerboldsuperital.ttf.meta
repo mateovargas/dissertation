@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: da618285976c8494c8b51943f498a919
+timeCreated: 1497870803
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Elite Danger Bold Super-Italic
+  fontNames:
+  - Elite Danger Bold Super-Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

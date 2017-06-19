@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 20fc727e5a5d54c58ae4b4c667fccad9
+timeCreated: 1497870802
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Elite Danger Expanded Italic
+  fontNames:
+  - Elite Danger Expanded Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

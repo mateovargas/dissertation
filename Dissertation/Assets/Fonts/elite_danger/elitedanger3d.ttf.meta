@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 28424e82be1f64374800df5902e43b78
+timeCreated: 1497870802
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Elite Danger 3D
+  fontNames:
+  - Elite Danger 3D
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
