@@ -6,28 +6,27 @@ using UnityEngine.UI;
 public class textboxManager : MonoBehaviour {
 
 
-	public GameObject text_box;
 	public Text text;
 	public TextAsset text_file;
 	public Button continue_text;
 	public Button repeat_text;
 	public string[] text_lines;
 	public int current_line;
+	public int hide_sprite;
+	public int repeat;
 	public int end_at_line;
-
+	public SpriteRenderer sprite_renderer;
 
 
 	// Use this for initialization
 	void Start () {
-
-		continue_text = continue_text.GetComponent<Button> ();
-		repeat_text = repeat_text.GetComponent<Button> ();
 
 		continue_text.gameObject.SetActive (false);
 		repeat_text.gameObject.SetActive (false);
 
 		if (text_file != null) {
 
+			Debug.Log (text_file.ToString ());
 			text_lines = (text_file.text.Split('\n'));
 
 		}
@@ -45,13 +44,19 @@ public class textboxManager : MonoBehaviour {
 
 		text.text = text_lines [current_line];
 
-		if (Input.GetKeyDown (KeyCode.Return)) {
+		if ((/**Input.GetKeyDown (KeyCode.Return) ||**/ Input.GetKeyDown(KeyCode.Mouse0)) && current_line < end_at_line) {
 
 			current_line = current_line + 1;
 
 		}
 
-		if (current_line == end_at_line) {
+		if (current_line == hide_sprite) {
+
+			sprite_renderer.enabled = false;
+
+		}
+			
+		if (current_line == repeat) {
 
 			continue_text.gameObject.SetActive (true);
 			repeat_text.gameObject.SetActive (true);
@@ -62,13 +67,15 @@ public class textboxManager : MonoBehaviour {
 
 	public void continuePress(){
 
-		//continue to main game scene
+		Application.LoadLevel (2);
 
 	}
 
 	public void repeatPress(){
 	
-		current_line = 10;
+		continue_text.gameObject.SetActive (false);
+		repeat_text.gameObject.SetActive (false);
+		current_line = 9;
 
 	}
 

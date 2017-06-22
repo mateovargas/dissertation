@@ -5,12 +5,12 @@ decontamination procedures, the landing party brought something back with them.
 You are the Chief Medical Officer of the UNSS Hadley's Hope. You are tasked with guiding the ship through the
 outbreak with as best you can with the resources at hand. Good luck!
 Hello, I am Medical Unit 1138. I am here to assist you in implementing your required instructions. 
-The shiponly has limited resources, I'm afraid, and every crew member that is not in hypersleep is 
-vital to the functioning of the colony. 
+The ship only has limited resources, I'm afraid, and every crew member that is not in hypersleep is 
+vital to the functioning of the colony.
 Quarantining individuals uses the less energy than vaccination but prevents crew members from accomplishing 
-their duties and can be used immediately. 
+their duties and can be used immediately.
 Alternatively, vaccination allows crew members to continue preparing for the colony's landfall, 
-but consumes more energy to implement, as well as taking time to create. 
+but consumes more energy to implement, as well as taking time to create.
 It is up to you to manage these resources as you see fit while guiding the colony to the end of the infection. 
 Once the infection spread is over, we can initiate landfall.
 Luckily, it seems that this disease is non-lethal, however, we would not want to expose the colonists to undue risks. 
