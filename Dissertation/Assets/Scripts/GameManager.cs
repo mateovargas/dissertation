@@ -1,41 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class gameManager : MonoBehaviour {
 
+	public static gameManager instance = null;
+	private boardManager boardScript;
+	private int day = 1;
 
-	public static GameManager instance = null;
+	// Use this for initialization
+	void Awake () {
 
-	private Dictionary<int, string> population;
-	private bool doingSetup = true;
-
-	//Called before any start functions
-	void Awake(){
-		//Check if instance already exists
 		if (instance == null) {
-			//if not, set it to this
+
 			instance = this;
 
-		} //if instance exists and is not this
-		else if (instance != this) {
-			//destroy it
+		} else if (instance != this) {
+		
 			Destroy (gameObject);
 
 		}
 
 		DontDestroyOnLoad (gameObject);
 
+		boardScript = GetComponent<boardManager> ();
+
+		InitGame ();
+
 	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+	//initializes the game for each level
+	void InitGame(){
 	
-	// Update is called once per frame
-	void Update () {
-		
+		boardScript.SetupScene ();
+
 	}
+
+
+
+
+	
 }

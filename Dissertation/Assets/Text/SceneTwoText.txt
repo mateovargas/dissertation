@@ -4,7 +4,7 @@ ship’s first landing party has returned to discuss their preliminary findings.
 decontamination procedures, the landing party brought something back with them.
 You are the Chief Medical Officer of the UNSS Hadley's Hope. You are tasked with guiding the ship through the
 outbreak with as best you can with the resources at hand. Good luck!
-Hello, I am Medical Unit 1138. I am here to assist you in implementing your required instructions. 
+Hello, I am Medical Android 1138. I am here to assist you in implementing your required instructions. 
 The ship only has limited resources, I'm afraid, and every crew member that is not in hypersleep is 
 vital to the functioning of the colony.
 Quarantining individuals uses the less energy than vaccination but prevents crew members from accomplishing 

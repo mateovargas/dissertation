@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class textboxManager : MonoBehaviour {
 
@@ -12,10 +13,11 @@ public class textboxManager : MonoBehaviour {
 	public Button repeat_text;
 	public string[] text_lines;
 	public int current_line;
-	public int hide_sprite;
-	public int repeat;
+	public int hide_ship;
+	public int repeat_instructions;
 	public int end_at_line;
-	public SpriteRenderer sprite_renderer;
+	public SpriteRenderer sprite_renderer_one;
+	public SpriteRenderer sprite_renderer_two;
 
 
 	// Use this for initialization
@@ -23,10 +25,11 @@ public class textboxManager : MonoBehaviour {
 
 		continue_text.gameObject.SetActive (false);
 		repeat_text.gameObject.SetActive (false);
+		sprite_renderer_one.enabled = true;
+		sprite_renderer_two.enabled = false;
 
 		if (text_file != null) {
 
-			Debug.Log (text_file.ToString ());
 			text_lines = (text_file.text.Split('\n'));
 
 		}
@@ -50,13 +53,14 @@ public class textboxManager : MonoBehaviour {
 
 		}
 
-		if (current_line == hide_sprite) {
+		if (current_line == hide_ship) {
 
-			sprite_renderer.enabled = false;
+			sprite_renderer_one.enabled = false;
+			sprite_renderer_two.enabled = true;
 
 		}
 			
-		if (current_line == repeat) {
+		if (current_line == repeat_instructions) {
 
 			continue_text.gameObject.SetActive (true);
 			repeat_text.gameObject.SetActive (true);
@@ -67,7 +71,7 @@ public class textboxManager : MonoBehaviour {
 
 	public void continuePress(){
 
-		Application.LoadLevel (2);
+		SceneManager.LoadScene (2);
 
 	}
 
