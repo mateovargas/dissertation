@@ -7,8 +7,9 @@ using UnityEngine;
 public class gameManager : MonoBehaviour {
 
 	public static gameManager instance = null;
-	private boardManager boardScript;
-	private int day = 1;
+	private boardManager board_script;
+	private sirGameModel sir_model;
+	//private int day = 1;
 
 	// Use this for initialization
 	void Awake () {
@@ -25,7 +26,8 @@ public class gameManager : MonoBehaviour {
 
 		DontDestroyOnLoad (gameObject);
 
-		boardScript = GetComponent<boardManager> ();
+		board_script = GetComponent<boardManager> ();
+		sir_model = GetComponent <sirGameModel> ();
 
 		InitGame ();
 
@@ -34,7 +36,8 @@ public class gameManager : MonoBehaviour {
 	//initializes the game for each level
 	void InitGame(){
 	
-		boardScript.SetupScene ();
+		board_script.SetupScene ();
+
 
 	}
 

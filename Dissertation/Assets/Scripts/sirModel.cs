@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System;
 using System.IO;
-//using UnityEngine;
+
 
 
 /**
- * This is the class that dictates the behavior of the SIR model that will be the backing of the game.
- * It uses a dictionary to keep track of the entire population, with the individual ID as the key and the infection
- * status as the value. The main method is used to both test the functionality of the model and to produce experimental
- * data to ensure the accuracy of the model.
+ *Class that defines the SIR Model of infection. This version was used to produce the initial phase data and tests
+ *that are included in the evaluation. This is the basis of the class that will be modified and extended to work within
+ *Unity.
  **/
 public class sirModel{
 
@@ -172,21 +171,6 @@ public class sirModel{
 		Dictionary<int, int> recovered_data = new Dictionary<int, int> ();
 		test_model = new sirModel (99990, 10, ((double)1/(double)2), ((double)1/(double)3));
 
-		//Dictionary<int, string> population = test_model.get_population();
-
-		/**if (population.Count != 100) {
-
-			Console.WriteLine("Error in model initialization. Wrong number of individuals.");
-
-		} 
-		else {
-
-			for (int i = 0; i < population.Count; i++) {
-				Console.WriteLine ("The current individual is: " + i +
-					" and the status is: " + population [i]);
-			}
-		}**/
-
 		Console.WriteLine ("");
 		Console.WriteLine ("The test model has a susceptible count of: " + test_model.susceptible_count);
 		Console.WriteLine ("The test model has an infection count of: " + test_model.infected_count);
@@ -202,24 +186,6 @@ public class sirModel{
 
 		test_model.infect_and_recover ();
 
-		/**for (int i = 0; i < population.Count; i++) {
-			Console.WriteLine ("The current individual is: " + i +
-				" and the status is: " + population [i]);
-		}
-
-		Console.WriteLine ("After 1 infection cycle, the test model has a susceptible count of: " 
-							+ test_model.susceptible_count);
-		Console.WriteLine ("After 1 infection cycle, the test model has an infection count of: " 
-							+ test_model.infected_count);
-
-		Console.WriteLine ("");
-
-		Console.WriteLine ("After 1 recovery cycle, the test model has a susceptible count of: " 
-							+ test_model.susceptible_count);
-		Console.WriteLine ("After 1 recovery cycle, the test model has an infection count of: " 
-							+ test_model.infected_count);
-		Console.WriteLine ("After 1 recovery cycle, the test model has a recovered count of: " 
-							+ test_model.recovered_count);**/
 
 		int t = 1;
 		while (test_model.get_recovered_count() != 100000) {

@@ -47,11 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\boardManager.cs" />
+     <Compile Include="Assets\Scripts\character.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
      <Compile Include="Assets\Scripts\loaderManager.cs" />
      <Compile Include="Assets\Scripts\menuScript.cs" />
+     <Compile Include="Assets\Scripts\movementController.cs" />
+     <Compile Include="Assets\Scripts\sirGameModel.cs" />
      <Compile Include="Assets\Scripts\sirModel.cs" />
-     <Compile Include="Assets\Scripts\textScript.cs" />
      <Compile Include="Assets\Scripts\textboxManager.cs" />
      <None Include="Assets\Sprites\Sci Art Pack\Changelog.txt" />
      <None Include="Assets\Text\SceneTwoText.txt" />

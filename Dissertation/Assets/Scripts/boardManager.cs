@@ -9,10 +9,10 @@ public class boardManager : MonoBehaviour {
 
 
 
-	public int columns = 20;
-	public int rows = 20;
-	public int individual_min = 100;
-	public int individual_max = 100;
+	public int columns;
+	public int rows;
+	public int individual_count;
+	private List <GameObject> characters;
 	public GameObject[] floor_tiles;
 	public GameObject[] wall_tiles;
 	public GameObject[] outer_wall_tiles;
@@ -69,14 +69,16 @@ public class boardManager : MonoBehaviour {
 	}
 
 	void LayoutIndividualAtRandom(GameObject[] array){
-	
-		int object_count = 100;
 
-		for (int i = 0; i < object_count; i++) {
+
+		for (int i = 0; i < individual_count; i++) {
 		
 			Vector3 random_position = RandomPosition ();
 			GameObject tile = array [0];
-			Instantiate (tile, random_position, Quaternion.identity);
+			GameObject instance = Instantiate (tile, random_position, Quaternion.identity);
+
+			characters.Add (instance); //STILL PROBLEMS HERE
+
 
 		}
 
@@ -147,10 +149,11 @@ public class boardManager : MonoBehaviour {
 
 		LayoutIndividualAtRandom (individual_tiles);
 
-		//layout walls
+	}
 
-		//LayoutIndividualAtRandom (individual_tile, 0, 100);
-
+	public List <GameObject> getCharacters(){
+	
+		return characters;
 
 	}
 
