@@ -134,6 +134,19 @@ public class boardManager : MonoBehaviour {
 		Vector3 quarantine_wall_thirteen = new Vector3 (5, 7, 0f);
 		Instantiate (wall_tile, quarantine_wall_thirteen, Quaternion.identity);
 		grid_positions.Remove (quarantine_wall_thirteen);
+
+
+		Vector3 inside_quarantine = new Vector3 (5, 6, 0f);
+		grid_positions.Remove (inside_quarantine);
+
+		inside_quarantine = new Vector3 (6, 6, 0f);
+		grid_positions.Remove (inside_quarantine);
+
+		inside_quarantine = new Vector3 (5, 5, 0f);
+		grid_positions.Remove (inside_quarantine);
+
+		inside_quarantine = new Vector3 (6, 5, 0f);
+		grid_positions.Remove (inside_quarantine);
 	}
 
 	public void SetupScene(){

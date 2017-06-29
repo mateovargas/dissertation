@@ -162,6 +162,18 @@ public class sirGameModel : MonoBehaviour {
 
 			}
 		}**/
+
+
+		//INFECTION ONLY
+		//pass in the units that collide
+		//choose a random number
+		//if random number is the less that the requisite fraction of the total, infect and update the counts
+		//else, end the method
+
+
+		//BREAK OUT RECOVERY?
+		//Call method, some chance that the first infected go to recovery.
+		
 	}
 		
 	public void setupModel(){
@@ -186,12 +198,6 @@ public class sirGameModel : MonoBehaviour {
 		for (int j = 0; j < infected_count; j++) {
 
 			population.Add (character_tiles[(i + j)], "infected");
-
-		}
-		
-	foreach (KeyValuePair<GameObject, string> pair in population) {
-		
-		Debug.Log ("The instance is: " + pair.Key.GetInstanceID() + " and the status is: " + pair.Value.ToString());
 
 		}
 	
