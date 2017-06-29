@@ -73,6 +73,7 @@ public abstract class movementController : MonoBehaviour {
 			rigidbody_2d.MovePosition (new_position);
 			square_remaining_distance = (transform.position - end).sqrMagnitude;
 			yield return null;
+
 		}
 
 	}

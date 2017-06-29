@@ -46,11 +46,21 @@ public class boardManager : MonoBehaviour {
 			for (int y = 0; y < rows; y++) {
 
 				GameObject to_instantiate = floor_tiles[0];
+				GameObject instance;
 
-				GameObject instance = 
-					Instantiate(to_instantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+				if(x == -2 || x == columns + 1 || y == 0 || y == rows - 1){
 
+					to_instantiate = wall_tiles[0];
+					instance = Instantiate(to_instantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+					instance.transform.SetParent(board_holder);
+
+				}
+				else{
+					
+				instance = Instantiate(to_instantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 				instance.transform.SetParent(board_holder);
+				
+				}
 
 			}
 
@@ -76,7 +86,6 @@ public class boardManager : MonoBehaviour {
 			GameObject tile = array [0];
 			GameObject instance = Instantiate (tile, random_position, Quaternion.identity);
 			characters.Add (instance);
-
 
 		}
 
@@ -134,7 +143,7 @@ public class boardManager : MonoBehaviour {
 		Vector3 quarantine_wall_thirteen = new Vector3 (5, 7, 0f);
 		Instantiate (wall_tile, quarantine_wall_thirteen, Quaternion.identity);
 		grid_positions.Remove (quarantine_wall_thirteen);
-
+					
 
 		Vector3 inside_quarantine = new Vector3 (5, 6, 0f);
 		grid_positions.Remove (inside_quarantine);

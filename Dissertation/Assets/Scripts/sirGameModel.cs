@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 
 
@@ -21,37 +22,6 @@ public class sirGameModel : MonoBehaviour {
 	public int total_pop;
 	public double recovery_rate;
 
-
-	/**
-	 *Public constructor to create an instance of the SIR model. It takes the intial number of susceptible individuals,
-	 *infected individuals, the contact rate, and the recovery rate as arguments. This will be adjusted for the model
-	 *that will be used in the game (as the first two parameters will have to be linked to the game objects that
-	 *represent individuals.
-	 **/
-	/**public sirGameModel(int susceptible, int infected, double b, double k){
-
-		population = new Dictionary<int, string> ();
-		susceptible_count = susceptible;
-		infected_count = infected;
-		recovered_count = 0;
-		total_pop = susceptible_count + infected_count + recovered_count;
-		contacts = b;
-		recovery_rate = k;
-
-		int i = 0;
-		while (i < susceptible) {
-
-			population.Add (i, "susceptible");
-			i++;
-
-		}
-
-		for (int j = 0; j < infected; j++) {
-
-			population.Add ((i) + j, "infected");
-		}
-
-	}**/
 
 	//Method to get the population dictionary.
 	public Dictionary<GameObject, string> get_population(){
@@ -95,6 +65,12 @@ public class sirGameModel : MonoBehaviour {
 
 	}
 
+	public string get_individual_status (GameObject individual){
+
+			return population[individual];
+	
+	}
+
 	//Method to set the number of susceptible individuals.
 	public void set_susceptible_count(int susceptible){
 
@@ -129,53 +105,7 @@ public class sirGameModel : MonoBehaviour {
 
 	}
 
-	//Method to infect and recover a certain amount of people on the given day.
-	public void infect_and_recover(){
-
-
-		//THIS WILL CHANGE WHEN SWITCHING TO THE GAME. WILL BE BASED ON ACTUAL GAME COLLISIONS
-		/**double rate_of_infection = -(contacts) * ((double)susceptible_count / (double)total_pop) * (infected_count);
-		double rate_of_recovery = recovery_rate * (infected_count);
-
-		//loop over to infect
-		int i = 0;
-		for (int j = 0; j < population.Count; j++) {
-
-			if (population [j] == "susceptible" && i > rate_of_infection) {
-				population [j] = "infected";
-				infected_count++;
-				susceptible_count--;
-				i = i - 1;
-			}
-		}
-
-		//loop over to recover
-		int k = 0;
-		for (int j = population.Count-1; j >= 0; j--){
-
-			if (population [j] == "infected" && k < rate_of_recovery) {
-
-				population [j] = "recovered";
-				infected_count--;
-				recovered_count++;
-				k = k + 1;
-
-			}
-		}**/
-
-
-		//INFECTION ONLY
-		//pass in the units that collide
-		//choose a random number
-		//if random number is the less that the requisite fraction of the total, infect and update the counts
-		//else, end the method
-
-
-		//BREAK OUT RECOVERY?
-		//Call method, some chance that the first infected go to recovery.
-		
-	}
-		
+			
 	public void setupModel(){
 		
 		population = new Dictionary<GameObject, string> ();
@@ -201,5 +131,63 @@ public class sirGameModel : MonoBehaviour {
 
 		}
 	
+	}
+
+	public void infect(GameObject moving_character, GameObject hit_character){
+
+
+		Debug.Log ("The moving character is: " + moving_character.GetInstanceID () + " and the status is: " + population [moving_character]);
+		Debug.Log ("The hit character is: " + hit_character.GetInstanceID () + " and the status is: " + population [hit_character]);
+
+		if (population [moving_character] != "infected" && population [hit_character] != "infected") {
+		
+			return;
+
+		}
+
+		int random_chance = Random.Range (0, 1000); //CHANGE DEPENDING ON THE INFECTION RATE (USING 1/3)
+
+		Debug.Log ("RANDOM CHANCE IS: " + random_chance);
+
+		if ((population [moving_character] == "infected") && (population [hit_character] == "susceptible")) {
+
+			if (random_chance > 333) {
+			
+				population [hit_character] = "infected";
+				infected_count++;
+				susceptible_count--;
+				//ADD SOME CUE TO KNOW IT'S INFECTED
+
+			}
+		}
+		else if((population[moving_character] == "susceptible") && (population[hit_character] == "infected")){
+		
+			if(random_chance > 333){
+			
+				population[moving_character] = "infected";
+				infected_count++;
+				susceptible_count--;
+				//ADD SOME CUE TO KNOW IT'S INFECTED
+
+			}
+
+		}
+
+		Debug.Log ("The moving character is now: " + population [moving_character]);
+		Debug.Log ("The hit character is now: " + population [hit_character]);
+	}
+
+	public void recover(GameObject character){
+	
+		int random_chance = Random.Range (0, 1000);
+
+		if (random_chance < 500) {
+
+			population [character] = "recovered";
+			infected_count--;
+			recovered_count++;
+			//ADD SOME CUE TO KNOW IT'S
+		}
+
 	}
 }
