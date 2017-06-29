@@ -12,15 +12,14 @@ public class boardManager : MonoBehaviour {
 	public int columns;
 	public int rows;
 	public int individual_count;
-	private List <GameObject> characters;
 	public GameObject[] floor_tiles;
 	public GameObject[] wall_tiles;
 	public GameObject[] outer_wall_tiles;
 	public GameObject[] individual_tiles;
 
-
 	private Transform board_holder;
 	private List <Vector3> grid_positions = new List<Vector3>();
+	private List <GameObject> characters = new List<GameObject> ();
 
 	void initializeList(){
 
@@ -76,8 +75,7 @@ public class boardManager : MonoBehaviour {
 			Vector3 random_position = RandomPosition ();
 			GameObject tile = array [0];
 			GameObject instance = Instantiate (tile, random_position, Quaternion.identity);
-
-			characters.Add (instance); //STILL PROBLEMS HERE
+			characters.Add (instance);
 
 
 		}

@@ -37,6 +37,7 @@ public class gameManager : MonoBehaviour {
 	void InitGame(){
 	
 		board_script.SetupScene ();
+		sir_model.setupModel ();
 
 
 	}

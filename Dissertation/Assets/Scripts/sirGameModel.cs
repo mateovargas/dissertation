@@ -188,7 +188,12 @@ public class sirGameModel : MonoBehaviour {
 			population.Add (character_tiles[(i + j)], "infected");
 
 		}
-	
+		
+	foreach (KeyValuePair<GameObject, string> pair in population) {
+		
+		Debug.Log ("The instance is: " + pair.Key.GetInstanceID() + " and the status is: " + pair.Value.ToString());
+
+		}
 	
 	}
 }
