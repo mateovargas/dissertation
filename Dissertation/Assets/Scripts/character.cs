@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
+using System.IO;
 
 public class character : movementController {
 
-	//private Animator animator;
+	private SpriteRenderer renderer;
 	private string status;
 	private sirGameModel sir;
+	private bool can_move = true;
+
 
 	protected override void Start () {
 
 		sir = GameObject.Find ("gameManager").GetComponent<sirGameModel> ();
-		//animator = GetComponent<Animator>();
+
+		renderer = GetComponent<SpriteRenderer> ();
+
 		base.Start();
 	}
 
@@ -28,10 +34,10 @@ public class character : movementController {
 		int y_direction = 0;
 
 
-		int x_random_chance = Random.Range (0, 1);
-		int y_random_chance = Random.Range (0 , 1);
+		int x_random_chance = Random.Range (0, 100);
+		int y_random_chance = Random.Range (0 , 100);
 
-		if (x_random_chance > (1 / 2)) {
+		if (x_random_chance > (50)) {
 		
 			x_direction = 1;
 
@@ -42,7 +48,7 @@ public class character : movementController {
 
 		}
 
-		if (y_random_chance > 1 / 2) {
+		if (y_random_chance > 50) {
 		
 			y_direction = 1;
 		
@@ -59,15 +65,9 @@ public class character : movementController {
 
 	protected override void onCantMove <T> (T component){
 
-		//Character hit_character = component as Character;
 		character hit_character = component as character;
 
 		infect (hit_character);
-
-		//moveCharacter ();
-
-		//infect?? this may be where to call it
-		//trigger animator if infected?
 
 	}
 
@@ -84,11 +84,59 @@ public class character : movementController {
 	
 	}
 
+	public void color_cue(){
+
+		if (sir.get_individual_status (this.gameObject) == "infected") {
+		
+			renderer.color = Color.blue;	
+
+		} 
+		else if (sir.get_individual_status (this.gameObject) == "recovered") {
+		
+			renderer.color = Color.green;
+		
+		}
+	
+	}
+
 	void Update(){
+
+		if (sir.update_timer) {
+		
+			sir.level_timer = sir.level_timer + Time.deltaTime * 1;
+
+			sir.timer_in_seconds = Mathf.Round (sir.level_timer);
+
+		}
+
+		if ((sir.get_recovered_count() == sir.get_population().Count) || 
+			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
+
+			sir.update_timer = false;
 	
-	//	Debug.Log ("UPDATING");
-		moveCharacter ();
-	
+			sir.print_data();
+
+			SceneManager.LoadScene (0);
+
+		
+		}
+			
+		if (sir.timer_in_seconds % 2 == 0) {
+		
+			moveCharacter ();
+
+		}
+			
+
+		if (sir.get_individual_status (this.gameObject) == "infected" && sir.timer_in_seconds % 15 == 0) {
+		
+			recover ();
+
+		}
+
+		sir.add_data ();
+		color_cue ();
+
 	}
 
 }

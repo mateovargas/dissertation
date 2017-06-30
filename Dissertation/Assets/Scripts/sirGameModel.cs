@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 using Random = UnityEngine.Random;
 
 
@@ -14,13 +15,20 @@ using Random = UnityEngine.Random;
  **/
 public class sirGameModel : MonoBehaviour {
 
-	public Dictionary<GameObject, string> population; //dictionary for entire pop. with <individual id, infection status>
-	public int susceptible_count;
-	public int infected_count;
-	public int recovered_count;
-	public double contacts;
-	public int total_pop;
-	public double recovery_rate;
+	private Dictionary<GameObject, string> population; //dictionary for entire pop. with <individual id, infection status>
+	private int susceptible_count;
+	private int infected_count;
+	private int recovered_count;
+	private double contacts;
+	private int total_pop;
+	private double recovery_rate;
+
+	public float timer_in_seconds = 0;
+	public float level_timer = 0;
+	public bool update_timer = false;
+	private Dictionary<float, int> susceptible_data = new Dictionary<float, int>();
+	private Dictionary<float, int> infected_data = new Dictionary<float, int>();
+	private Dictionary<float, int> recovered_data = new Dictionary<float, int>();
 
 
 	//Method to get the population dictionary.
@@ -65,6 +73,7 @@ public class sirGameModel : MonoBehaviour {
 
 	}
 
+	//Method to get the individual's status.
 	public string get_individual_status (GameObject individual){
 
 			return population[individual];
@@ -106,21 +115,32 @@ public class sirGameModel : MonoBehaviour {
 	}
 
 			
+	/**
+	 *Method to set up the SIR model. This is called from gameManager.cs, in the initGame method.
+	 *It places each character gameobject into a dictionary with the appropriate status, be it susceptible or infected.
+	 **/
 	public void setupModel(){
 		
 		population = new Dictionary<GameObject, string> ();
 
 		boardManager board = GetComponent<boardManager> ();
 
+		susceptible_count = 90;
+		infected_count = 10;
+		recovered_count = 0;
 
 		total_pop = susceptible_count + infected_count + recovered_count;
+
+		susceptible_data.Add (timer_in_seconds, susceptible_count);
+		infected_data.Add (timer_in_seconds, infected_count);
+		recovered_data.Add (timer_in_seconds, recovered_count);
 
 		List <GameObject> character_tiles = board.getCharacters();
 
 		int i = 0;
 		while (i < susceptible_count) {
 
-		population.Add (character_tiles[i], "susceptible");
+			population.Add (character_tiles[i], "susceptible");
 			i++;
 
 		}
@@ -130,9 +150,18 @@ public class sirGameModel : MonoBehaviour {
 			population.Add (character_tiles[(i + j)], "infected");
 
 		}
+
+		update_timer = true;
+		level_timer = 0.0f;
 	
 	}
 
+	/**
+	 *Method to determine the spread of the infection amongst characters. This method is called upon the detection of a 
+	 *collision between two character game objects. It takes two arguments, the characters who collide. It then chooses
+	 *a random number to determine whether the collision will result in the spread of the infection and, if so change
+	 *the newly infected characters status to infected and initiate an animation and sound cue (TO BE DONE).
+	 */
 	public void infect(GameObject moving_character, GameObject hit_character){
 
 
@@ -147,27 +176,32 @@ public class sirGameModel : MonoBehaviour {
 
 		int random_chance = Random.Range (0, 1000); //CHANGE DEPENDING ON THE INFECTION RATE (USING 1/3)
 
-		Debug.Log ("RANDOM CHANCE IS: " + random_chance);
 
 		if ((population [moving_character] == "infected") && (population [hit_character] == "susceptible")) {
 
-			if (random_chance > 333) {
+			if (random_chance > 500) {
 			
+				Debug.Log ("Infected hits Susceptible scenario");
 				population [hit_character] = "infected";
 				infected_count++;
 				susceptible_count--;
-				//ADD SOME CUE TO KNOW IT'S INFECTED
+
+				Debug.Log ("The susceptible count is now: " + susceptible_count);
+				Debug.Log ("The infected count is now: " + infected_count);
 
 			}
 		}
 		else if((population[moving_character] == "susceptible") && (population[hit_character] == "infected")){
 		
-			if(random_chance > 333){
+			if(random_chance > 500){
 			
+
+				Debug.Log ("Susceptible hits Infected scenario");
 				population[moving_character] = "infected";
 				infected_count++;
 				susceptible_count--;
-				//ADD SOME CUE TO KNOW IT'S INFECTED
+				Debug.Log ("The susceptible count is now: " + susceptible_count);
+				Debug.Log ("The infected count is now: " + infected_count);
 
 			}
 
@@ -181,13 +215,81 @@ public class sirGameModel : MonoBehaviour {
 	
 		int random_chance = Random.Range (0, 1000);
 
-		if (random_chance < 500) {
+		if (random_chance < 333) {
 
 			population [character] = "recovered";
 			infected_count--;
 			recovered_count++;
-			//ADD SOME CUE TO KNOW IT'S
+
 		}
 
+	}
+
+	public void add_data(){
+		
+		if (!susceptible_data.ContainsKey (timer_in_seconds)) {
+		
+			susceptible_data.Add (timer_in_seconds, susceptible_count);
+
+		}
+
+		if (!infected_data.ContainsKey (timer_in_seconds)) {
+		
+			infected_data.Add (timer_in_seconds, infected_count);
+		
+		}
+
+		if (!recovered_data.ContainsKey (timer_in_seconds)) {
+		
+			recovered_data.Add (timer_in_seconds, recovered_count);
+		
+		}
+			
+
+	
+	}
+
+	public void print_data(){
+	
+		using (var writer_s = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/susceptible.csv")) {
+
+			foreach (KeyValuePair<float, int> sus in susceptible_data) {
+				
+				string item_one_s = sus.Key.ToString();
+				string item_two_s = sus.Value.ToString();
+				string line = string.Format ("{0}, {1}", item_one_s, item_two_s);
+				writer_s.WriteLine (line);
+				writer_s.Flush ();
+
+			}
+		}
+
+
+		using (var writer_i = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/infected.csv")) {
+
+			foreach (KeyValuePair<float, int> inf in infected_data) {
+				
+				string item_one_i = inf.Key.ToString();
+				string item_two_i = inf.Value.ToString();
+				string line = string.Format ("{0}, {1}", item_one_i, item_two_i);
+				writer_i.WriteLine (line);
+				writer_i.Flush ();
+
+			}
+		}
+
+		using (var writer_r = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/recovered.csv")) {
+
+			foreach (KeyValuePair<float, int> rec in recovered_data) {
+				
+				string item_one_r = rec.Key.ToString();
+				string item_two_r = rec.Value.ToString();
+				string line = string.Format ("{0}, {1}", item_one_r, item_two_r);
+				writer_r.WriteLine (line);
+				writer_r.Flush ();
+
+			}
+		}
+	
 	}
 }

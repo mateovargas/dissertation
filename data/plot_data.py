@@ -12,7 +12,7 @@ A = []
 B = []
 I = []
 J = []
-with open('susceptible_average.csv', 'rb') as csvfile_s:
+with open('susceptible_imp_avg.csv', 'rb') as csvfile_s:
 	reader_s = csv.reader(csvfile_s)
 	i = 0
 	for row in reader_s:
@@ -25,7 +25,7 @@ with open('susceptible_average.csv', 'rb') as csvfile_s:
 		Y.insert(i, row[6])
 		i = i + 1
 
-with open('infected_average.csv', 'rb') as csvfile_i:
+with open('infected_imp_avg.csv', 'rb') as csvfile_i:
 	reader_i = csv.reader(csvfile_i)
 	j = 0
 	for row in reader_i:
@@ -37,7 +37,7 @@ with open('infected_average.csv', 'rb') as csvfile_i:
 		B.insert(i, row[6])
 		j = j + 1
 
-with open('recovered_average.csv', 'rb') as csvfile_r:
+with open('recovered_imp_avg.csv', 'rb') as csvfile_r:
 	reader_r = csv.reader(csvfile_r)
 	k = 0
 	for row in reader_r:

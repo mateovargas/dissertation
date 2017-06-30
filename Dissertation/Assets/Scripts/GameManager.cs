@@ -9,7 +9,6 @@ public class gameManager : MonoBehaviour {
 	public static gameManager instance = null;
 	private boardManager board_script;
 	private sirGameModel sir_model;
-	//private int day = 1;
 
 	// Use this for initialization
 	void Awake () {
