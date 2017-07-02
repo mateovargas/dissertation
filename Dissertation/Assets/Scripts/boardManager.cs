@@ -25,9 +25,11 @@ public class boardManager : MonoBehaviour {
 
 		grid_positions.Clear ();
 
-		for (int x = 1; x < columns; x++) {
+		for (int x = 1; x < columns-1; x++) {
 
-			for (int y = 1; y < rows; y++) {
+			for (int y = 1; y < rows-1; y++) {
+
+				Debug.Log ("Placing location: (" + x + ", " + y + ")");
 			
 				grid_positions.Add (new Vector3 (x, y, 0f));
 
@@ -41,24 +43,26 @@ public class boardManager : MonoBehaviour {
 	
 		board_holder = new GameObject ("Board").transform;
 
-		for (int x = -2; x < columns + 2; x++) {
+		for (int x = -1; x < columns + 1; x++) {
 
-			for (int y = 0; y < rows; y++) {
+			for (int y = -1; y < rows + 1; y++) {
 
 				GameObject to_instantiate = floor_tiles[0];
 				GameObject instance;
 
-				if(x == -2 || x == columns + 1 || y == 0 || y == rows - 1){
+				if(x == -1 || x == columns || y == -1 || y == rows){
 
 					to_instantiate = wall_tiles[0];
+					Vector3 vector = new Vector3 (x, y, 0f);
 					instance = Instantiate(to_instantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 					instance.transform.SetParent(board_holder);
+					grid_positions.Remove (vector);
 
 				}
 				else{
 					
-				instance = Instantiate(to_instantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
-				instance.transform.SetParent(board_holder);
+					instance = Instantiate(to_instantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+					instance.transform.SetParent(board_holder);
 				
 				}
 
@@ -165,9 +169,9 @@ public class boardManager : MonoBehaviour {
 		initializeList ();
 
 
-		LayoutInnerWalls ();
+		//LayoutInnerWalls ();
 
-		LayoutIndividualAtRandom (individual_tiles);
+		//LayoutIndividualAtRandom (individual_tiles);
 
 	}
 

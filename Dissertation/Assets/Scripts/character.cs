@@ -12,7 +12,9 @@ public class character : movementController {
 	private sirGameModel sir;
 	private bool can_move = true;
 
-
+	/**
+	 *Method to star the character script.
+	 **/
 	protected override void Start () {
 
 		sir = GameObject.Find ("gameManager").GetComponent<sirGameModel> ();
@@ -22,12 +24,20 @@ public class character : movementController {
 		base.Start();
 	}
 
+	/**
+	 *Method for a character to attempt a move in a direction. Takes in two ints to represent x and y cardinal
+	 *directions, chosen randomly. It passes these values into the movementController method.
+	 **/
 	protected override void attemptMove <T> (int x_direction, int y_direction){
 
 		base.attemptMove <T> (x_direction, y_direction); 
 
 	}
-
+		
+	/**
+	 *Method to move the character. It randomly chooses a value between 0 and 100 to determine the direction of 
+	 *movement. It calls attemptMove once the directions are randomly chosen to ensure that the movement is valid.
+	 **/
 	public void moveCharacter(){
 
 		int x_direction = 0;
@@ -63,6 +73,10 @@ public class character : movementController {
 
 	}
 
+	/**
+	 *Method to react to a character collision. When two characters collide, it records the character that is hit and
+	 *then passes that into the infect method.
+	 **/
 	protected override void onCantMove <T> (T component){
 
 		character hit_character = component as character;
@@ -71,6 +85,10 @@ public class character : movementController {
 
 	}
 
+	/**
+	 *Method to infect a character after a game collision. It takes in the hit character and then makes a call to the
+	 *SIR model class's infect method, passing in the current Game Object and the hit character.
+	 **/
 	public void infect (character hit_character){
 
 
@@ -78,12 +96,18 @@ public class character : movementController {
 
 	}
 
+	/**
+	 *Method to call the SIR model class's recover method on the current Game Object.
+	 **/
 	public void recover(){
 	
 		sir.recover (this.gameObject);
 	
 	}
 
+	/**
+	 *Method to change the color of the current character, dependent on the infection status of the individual. 
+	 **/
 	public void color_cue(){
 
 		if (sir.get_individual_status (this.gameObject) == "infected") {
@@ -99,6 +123,41 @@ public class character : movementController {
 	
 	}
 
+	//MOVE TOO FAST FOR THIS TO BE VIABLE. BUT IT WORKS
+	void OnMouseDown(){
+
+		Vector3 screen_point;
+		Vector3 offset;
+
+		screen_point = Camera.main.WorldToScreenPoint (gameObject.transform.position);
+
+		offset = gameObject.transform.position - 
+			Camera.main.WorldToScreenPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screen_point.z));
+		
+	}
+
+	//AS ABOVE. TRY TO GET IT TO APPEAR ABOVE THE WALL AND TO HAVE IT BOUNCE OFF WALL IF PLACED POORLY
+	void OnMouseDrag(){
+	
+		float distance_to_screen = Camera.main.WorldToScreenPoint (gameObject.transform.position).z;
+
+		Vector3 position_move = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, 
+			                        Input.mousePosition.y, distance_to_screen));
+
+		transform.position = new Vector3 (position_move.x, position_move.y, position_move.z);
+
+
+	}
+
+	void vaccinate(){
+	
+		sir.vaccinate (this.gameObject);
+
+	}
+
+	/**
+	 *Method to update the current state of the Game Object. 
+	 **/
 	void Update(){
 
 		if (sir.update_timer) {
@@ -121,14 +180,14 @@ public class character : movementController {
 		
 		}
 			
-		if (sir.timer_in_seconds % 2 == 0) {
+		/**if (sir.timer_in_seconds % 2 == 0) {
 		
 			moveCharacter ();
 
-		}
+		}**/
 			
 
-		if (sir.get_individual_status (this.gameObject) == "infected" && sir.timer_in_seconds % 15 == 0) {
+		if (sir.get_individual_status (this.gameObject) == "infected" && sir.timer_in_seconds % 30 == 0) {
 		
 			recover ();
 
