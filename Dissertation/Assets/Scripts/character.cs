@@ -10,7 +10,7 @@ public class character : movementController {
 	private SpriteRenderer renderer;
 	private string status;
 	private sirGameModel sir;
-	private bool can_move = true;
+	float time_to_move;
 
 	/**
 	 *Method to star the character script.
@@ -20,6 +20,8 @@ public class character : movementController {
 		sir = GameObject.Find ("gameManager").GetComponent<sirGameModel> ();
 
 		renderer = GetComponent<SpriteRenderer> ();
+
+		time_to_move = Time.fixedTime + 0.5f;
 
 		base.Start();
 	}
@@ -156,45 +158,38 @@ public class character : movementController {
 	}
 
 	/**
-	 *Method to update the current state of the Game Object. 
+	 *Method to update the current state of the Game Object at a fixed rate. Movement happens every half-second and 
+	 *a "day" according to the SIR model is 5 seconds.
 	 **/
-	void Update(){
-
-		if (sir.update_timer) {
-		
-			sir.level_timer = sir.level_timer + Time.deltaTime * 1;
-
-			sir.timer_in_seconds = Mathf.Round (sir.level_timer);
-
-		}
+	void FixedUpdate(){
 
 		if ((sir.get_recovered_count() == sir.get_population().Count) || 
 			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
-
-			sir.update_timer = false;
 	
 			sir.print_data();
 
 			SceneManager.LoadScene (0);
 
-		
-		}
-			
-		/**if (sir.timer_in_seconds % 2 == 0) {
-		
-			moveCharacter ();
-
-		}**/
-			
-
-		if (sir.get_individual_status (this.gameObject) == "infected" && sir.timer_in_seconds % 30 == 0) {
-		
-			recover ();
 
 		}
 
-		sir.add_data ();
-		color_cue ();
+		if (Time.fixedTime >= time_to_move) {
+
+			//do something
+			moveCharacter();
+
+			if (sir.get_individual_status (this.gameObject) == "infected" && time_to_move % 2 == 0) {
+
+				recover ();
+
+			}
+
+			sir.add_data ();
+			color_cue ();
+
+			time_to_move = Time.fixedTime + 0.5f;
+			
+		}
 
 	}
 

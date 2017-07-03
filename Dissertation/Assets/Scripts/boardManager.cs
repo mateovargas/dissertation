@@ -25,12 +25,10 @@ public class boardManager : MonoBehaviour {
 
 		grid_positions.Clear ();
 
-		for (int x = 1; x < columns-1; x++) {
+		for (int x = -3; x < columns-2; x++) {
 
-			for (int y = 1; y < rows-1; y++) {
+			for (int y = -1; y < rows-4; y++) {
 
-				Debug.Log ("Placing location: (" + x + ", " + y + ")");
-			
 				grid_positions.Add (new Vector3 (x, y, 0f));
 
 			}
@@ -43,14 +41,14 @@ public class boardManager : MonoBehaviour {
 	
 		board_holder = new GameObject ("Board").transform;
 
-		for (int x = -1; x < columns + 1; x++) {
+		for (int x = -3; x < columns-1; x++) {
 
-			for (int y = -1; y < rows + 1; y++) {
+			for (int y = -1; y < rows-3; y++) {
 
 				GameObject to_instantiate = floor_tiles[0];
 				GameObject instance;
 
-				if(x == -1 || x == columns || y == -1 || y == rows){
+				if(x == -3 || x == columns-2 || y == -1 || y == rows-4){
 
 					to_instantiate = wall_tiles[0];
 					Vector3 vector = new Vector3 (x, y, 0f);
@@ -164,14 +162,13 @@ public class boardManager : MonoBehaviour {
 
 	public void SetupScene(){
 	
-		boardSetup ();
-
 		initializeList ();
 
+		boardSetup ();
 
-		//LayoutInnerWalls ();
+		LayoutInnerWalls ();
 
-		//LayoutIndividualAtRandom (individual_tiles);
+		LayoutIndividualAtRandom (individual_tiles);
 
 	}
 

@@ -149,7 +149,7 @@ public class sirGameModel : MonoBehaviour {
 
 		boardManager board = GetComponent<boardManager> ();
 
-		susceptible_count = 90;
+		susceptible_count = 40;
 		infected_count = 10;
 		recovered_count = 0;
 		vaccine_counter = 1;
