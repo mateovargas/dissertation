@@ -11,6 +11,8 @@ public class character : movementController {
 	private string status;
 	private sirGameModel sir;
 	float time_to_move;
+	float time_to_recover;
+	int day_counter;
 
 	/**
 	 *Method to star the character script.
@@ -22,6 +24,8 @@ public class character : movementController {
 		renderer = GetComponent<SpriteRenderer> ();
 
 		time_to_move = Time.fixedTime + 0.5f;
+
+		time_to_recover = Time.fixedTime + 5.0f;
 
 		base.Start();
 	}
@@ -128,18 +132,25 @@ public class character : movementController {
 	//MOVE TOO FAST FOR THIS TO BE VIABLE. BUT IT WORKS
 	void OnMouseDown(){
 
-		Vector3 screen_point;
+		if (sir.get_vaccine_counters () > 0 && sir.get_individual_status(this.gameObject) == "susceptible") {
+		
+			vaccinate ();
+			return;
+		
+		}
+
+		/**Vector3 screen_point;
 		Vector3 offset;
 
 		screen_point = Camera.main.WorldToScreenPoint (gameObject.transform.position);
 
 		offset = gameObject.transform.position - 
-			Camera.main.WorldToScreenPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screen_point.z));
+			Camera.main.WorldToScreenPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screen_point.z));**/
 		
 	}
 
 	//AS ABOVE. TRY TO GET IT TO APPEAR ABOVE THE WALL AND TO HAVE IT BOUNCE OFF WALL IF PLACED POORLY
-	void OnMouseDrag(){
+	/**void OnMouseDrag(){
 	
 		float distance_to_screen = Camera.main.WorldToScreenPoint (gameObject.transform.position).z;
 
@@ -149,7 +160,7 @@ public class character : movementController {
 		transform.position = new Vector3 (position_move.x, position_move.y, position_move.z);
 
 
-	}
+	}**/
 
 	void vaccinate(){
 	
@@ -163,6 +174,8 @@ public class character : movementController {
 	 **/
 	void FixedUpdate(){
 
+		color_cue ();
+
 		if ((sir.get_recovered_count() == sir.get_population().Count) || 
 			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
 	
@@ -175,12 +188,13 @@ public class character : movementController {
 
 		if (Time.fixedTime >= time_to_move) {
 
-			//do something
 			moveCharacter();
 
-			if (sir.get_individual_status (this.gameObject) == "infected" && time_to_move % 2 == 0) {
+			if (sir.get_individual_status (this.gameObject) == "infected" && Time.fixedTime >= time_to_recover) {
 
 				recover ();
+
+				time_to_recover = Time.fixedTime + 5.0f;
 
 			}
 
@@ -191,6 +205,8 @@ public class character : movementController {
 			
 		}
 
+		day_counter = sir.get_days ();
+			
 	}
 
 }

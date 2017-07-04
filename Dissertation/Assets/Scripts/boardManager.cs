@@ -25,9 +25,9 @@ public class boardManager : MonoBehaviour {
 
 		grid_positions.Clear ();
 
-		for (int x = -3; x < columns-2; x++) {
+		for (int x = -10; x < columns+6; x++) {
 
-			for (int y = -1; y < rows-4; y++) {
+			for (int y = -6; y < rows+2; y++) {
 
 				grid_positions.Add (new Vector3 (x, y, 0f));
 
@@ -41,14 +41,14 @@ public class boardManager : MonoBehaviour {
 	
 		board_holder = new GameObject ("Board").transform;
 
-		for (int x = -3; x < columns-1; x++) {
+		for (int x = -10; x < columns+6; x++) {
 
-			for (int y = -1; y < rows-3; y++) {
+			for (int y = -6; y < rows+2; y++) {
 
 				GameObject to_instantiate = floor_tiles[0];
 				GameObject instance;
 
-				if(x == -3 || x == columns-2 || y == -1 || y == rows-4){
+				if(x == -10 || x == columns+5 || y == -6 || y == rows+1){
 
 					to_instantiate = wall_tiles[0];
 					Vector3 vector = new Vector3 (x, y, 0f);
@@ -95,8 +95,9 @@ public class boardManager : MonoBehaviour {
 
 
 	void LayoutInnerWalls(){
-	
-		Vector3 quarantine_wall_one = new Vector3 (4, 7, 0f);
+		
+		GameObject wall_tile = wall_tiles [0];
+		/**Vector3 quarantine_wall_one = new Vector3 (4, 7, 0f);
 		GameObject wall_tile = wall_tiles [0];
 		Instantiate (wall_tile, quarantine_wall_one, Quaternion.identity);
 		grid_positions.Remove(quarantine_wall_one);
@@ -157,7 +158,105 @@ public class boardManager : MonoBehaviour {
 		grid_positions.Remove (inside_quarantine);
 
 		inside_quarantine = new Vector3 (6, 5, 0f);
-		grid_positions.Remove (inside_quarantine);
+		grid_positions.Remove (inside_quarantine);**/
+
+		Vector3 wall_vec = new Vector3 (-9, -2, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-8, -2, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, -2, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, -3, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, -4, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, -5, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (16, -2, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (15, -2, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, -2, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, -3, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, -4, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, -5, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (16, 9, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (15, 9, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, 9, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, 10, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, 11, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (14, 12, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-9, 9, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-8, 9, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, 9, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, 10, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, 11, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+		wall_vec = new Vector3 (-7, 12, 0f);
+		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		grid_positions.Remove (wall_vec);
+
+
 	}
 
 	public void SetupScene(){

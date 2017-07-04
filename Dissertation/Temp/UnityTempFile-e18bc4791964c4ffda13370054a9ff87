@@ -92,6 +92,7 @@
 'Assets/Scripts/loaderManager.cs'
 'Assets/Scripts/menuScript.cs'
 'Assets/Scripts/movementController.cs'
+'Assets/Scripts/pauseController.cs'
 'Assets/Scripts/sirGameModel.cs'
 'Assets/Scripts/sirModel.cs'
 'Assets/Scripts/textboxManager.cs'

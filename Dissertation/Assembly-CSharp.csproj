@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\loaderManager.cs" />
      <Compile Include="Assets\Scripts\menuScript.cs" />
      <Compile Include="Assets\Scripts\movementController.cs" />
+     <Compile Include="Assets\Scripts\pauseController.cs" />
      <Compile Include="Assets\Scripts\sirGameModel.cs" />
      <Compile Include="Assets\Scripts\sirModel.cs" />
      <Compile Include="Assets\Scripts\textboxManager.cs" />

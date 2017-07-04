@@ -26,10 +26,11 @@ public class sirGameModel : MonoBehaviour {
 	private Dictionary<float, int> infected_data = new Dictionary<float, int>();
 	private Dictionary<float, int> recovered_data = new Dictionary<float, int>();
 	private int vaccine_counter;
+	private float time_for_vaccine;
+	private int day;
 
 	public float timer_in_seconds = 0;
 	public float level_timer = 0;
-	public bool update_timer = false;
 
 
 	/**
@@ -95,6 +96,18 @@ public class sirGameModel : MonoBehaviour {
 	
 	}
 
+	public int get_vaccine_counters(){
+	
+		return vaccine_counter;
+	
+	}
+
+	public int get_days(){
+	
+		return day;
+	
+	}
+
 	/**
 	 *Method to set the number of susceptible individuals.
 	 **/
@@ -149,10 +162,11 @@ public class sirGameModel : MonoBehaviour {
 
 		boardManager board = GetComponent<boardManager> ();
 
-		susceptible_count = 40;
+		susceptible_count = board.individual_count - 10;
 		infected_count = 10;
 		recovered_count = 0;
-		vaccine_counter = 1;
+		vaccine_counter = 2;
+		day = 1;
 
 		total_pop = susceptible_count + infected_count + recovered_count;
 
@@ -176,8 +190,9 @@ public class sirGameModel : MonoBehaviour {
 
 		}
 
-		update_timer = true;
+
 		level_timer = 0.0f;
+		time_for_vaccine = Time.fixedTime + 5.0f;
 	
 	}
 
@@ -247,6 +262,7 @@ public class sirGameModel : MonoBehaviour {
 			population [character] = "recovered";
 			susceptible_count--;
 			recovered_count++;
+			vaccine_counter--;
 
 		}
 
@@ -325,4 +341,20 @@ public class sirGameModel : MonoBehaviour {
 		}
 	
 	}
+
+	void FixedUpdate(){
+
+		if (Time.fixedTime >= time_for_vaccine) {
+		
+			vaccine_counter++;
+
+			day++;
+
+			time_for_vaccine = Time.fixedTime + 5.0f;
+		
+		}
+
+
+	}
+
 }
