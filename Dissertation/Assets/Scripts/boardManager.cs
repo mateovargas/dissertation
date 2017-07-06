@@ -97,68 +97,11 @@ public class boardManager : MonoBehaviour {
 	void LayoutInnerWalls(){
 		
 		GameObject wall_tile = wall_tiles [0];
-		/**Vector3 quarantine_wall_one = new Vector3 (4, 7, 0f);
-		GameObject wall_tile = wall_tiles [0];
-		Instantiate (wall_tile, quarantine_wall_one, Quaternion.identity);
-		grid_positions.Remove(quarantine_wall_one);
+		GameObject door_tile_one = wall_tiles [1];
+		GameObject door_tile_two = wall_tiles [2];
+		GameObject door_tile_three = wall_tiles [3];
+		GameObject door_tile_four = wall_tiles [4];
 
-
-		Vector3 quarantine_wall_two = new Vector3 (4, 6, 0f);
-		Instantiate (wall_tile, quarantine_wall_two, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_two);
-
-		Vector3 quarantine_wall_three = new Vector3 (4, 5, 0f);
-		Instantiate (wall_tile, quarantine_wall_three, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_three);
-
-		Vector3 quarantine_wall_four = new Vector3 (4, 4, 0f);
-		Instantiate (wall_tile, quarantine_wall_four, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_four);
-
-		Vector3 quarantine_wall_six = new Vector3 (5, 4, 0f);
-		Instantiate (wall_tile, quarantine_wall_six, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_six);
-
-		Vector3 quarantine_wall_seven = new Vector3 (6, 4, 0f);
-		Instantiate (wall_tile, quarantine_wall_seven, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_seven);
-
-		Vector3 quarantine_wall_eight = new Vector3 (7, 4, 0f);
-		Instantiate (wall_tile, quarantine_wall_eight, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_eight);
-
-		Vector3 quarantine_wall_nine = new Vector3 (7, 5, 0f);
-		Instantiate (wall_tile, quarantine_wall_nine, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_nine);
-
-		Vector3 quarantine_wall_ten = new Vector3 (7, 6, 0f);
-		Instantiate (wall_tile, quarantine_wall_ten, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_ten);
-
-		Vector3 quarantine_wall_eleven = new Vector3 (7, 7, 0f);
-		Instantiate (wall_tile, quarantine_wall_eleven, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_eleven);
-
-		Vector3 quarantine_wall_twelve = new Vector3 (6, 7, 0f);
-		Instantiate (wall_tile, quarantine_wall_twelve, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_twelve);
-
-		Vector3 quarantine_wall_thirteen = new Vector3 (5, 7, 0f);
-		Instantiate (wall_tile, quarantine_wall_thirteen, Quaternion.identity);
-		grid_positions.Remove (quarantine_wall_thirteen);
-					
-
-		Vector3 inside_quarantine = new Vector3 (5, 6, 0f);
-		grid_positions.Remove (inside_quarantine);
-
-		inside_quarantine = new Vector3 (6, 6, 0f);
-		grid_positions.Remove (inside_quarantine);
-
-		inside_quarantine = new Vector3 (5, 5, 0f);
-		grid_positions.Remove (inside_quarantine);
-
-		inside_quarantine = new Vector3 (6, 5, 0f);
-		grid_positions.Remove (inside_quarantine);**/
 
 		Vector3 wall_vec = new Vector3 (-9, -2, 0f);
 		Instantiate (wall_tile, wall_vec, Quaternion.identity);
@@ -173,7 +116,7 @@ public class boardManager : MonoBehaviour {
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (-7, -3, 0f);
-		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		Instantiate (door_tile_three, wall_vec, Quaternion.identity);
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (-7, -4, 0f);
@@ -197,7 +140,7 @@ public class boardManager : MonoBehaviour {
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (14, -3, 0f);
-		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		Instantiate (door_tile_four, wall_vec, Quaternion.identity);
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (14, -4, 0f);
@@ -221,7 +164,7 @@ public class boardManager : MonoBehaviour {
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (14, 10, 0f);
-		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		Instantiate (door_tile_two, wall_vec, Quaternion.identity);
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (14, 11, 0f);
@@ -245,7 +188,7 @@ public class boardManager : MonoBehaviour {
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (-7, 10, 0f);
-		Instantiate (wall_tile, wall_vec, Quaternion.identity);
+		Instantiate (door_tile_one, wall_vec, Quaternion.identity);
 		grid_positions.Remove (wall_vec);
 
 		wall_vec = new Vector3 (-7, 11, 0f);
