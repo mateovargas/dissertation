@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\sirModel.cs" />
      <Compile Include="Assets\Scripts\textboxManager.cs" />
      <Compile Include="Assets\doorController.cs" />
+     <Compile Include="Assets\vaccineMenuController.cs" />
      <None Include="Assets\Sprites\Sci Art Pack\Changelog.txt" />
      <None Include="Assets\Text\SceneTwoText.txt" />
      <None Include="Assets\Text\Fonts\elite_danger\elitedanger.txt" />

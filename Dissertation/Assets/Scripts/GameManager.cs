@@ -13,6 +13,8 @@ public class gameManager : MonoBehaviour {
 	private sirGameModel sir_model;
 	private int score;
 	private int power;
+	private bool paused;
+	private float time_to_choose;
 
 	private Text susceptible_text;
 	private Text infected_text;
@@ -22,6 +24,7 @@ public class gameManager : MonoBehaviour {
 	private Text power_text;
 	private Text day_text;
 	private Image pause_menu;
+	private Image vaccine_menu;
 
 	// Use this for initialization
 	void Awake () {
@@ -40,7 +43,8 @@ public class gameManager : MonoBehaviour {
 
 		board_script = GetComponent<boardManager> ();
 		sir_model = GetComponent <sirGameModel> ();
-
+		time_to_choose = Time.fixedTime + 5.0f;
+			
 		InitGame ();
 
 	}
@@ -53,6 +57,7 @@ public class gameManager : MonoBehaviour {
 
 		score = 1000;
 		power = 100;
+		paused = false;
 
 		susceptible_text = GameObject.Find ("susceptible_text").GetComponent<Text> ();
 		infected_text = GameObject.Find ("infected_text").GetComponent<Text> ();
@@ -62,6 +67,7 @@ public class gameManager : MonoBehaviour {
 		power_text = GameObject.Find ("Power").GetComponent<Text> ();
 		day_text = GameObject.Find ("Days").GetComponent<Text> ();
 		pause_menu = GameObject.Find ("PauseMenu").GetComponent<Image> ();
+		vaccine_menu = GameObject.Find ("VaccineMenu").GetComponent<Image> ();
 
 		updateText ();
 
@@ -83,12 +89,6 @@ public class gameManager : MonoBehaviour {
 		power_text.text = "Power: " + power;
 
 		day_text.text = "Day: " + sir_model.get_days ();
-
-
-
-
-
-
 
 	}
 
@@ -123,7 +123,35 @@ public class gameManager : MonoBehaviour {
 				Time.timeScale = 0;
 
 			
-			} else {
+			} else if (Input.GetKeyDown (KeyCode.Space)) {
+			
+				if (paused == true) {
+					
+					Time.timeScale = 1;
+
+					paused = false;
+
+				} 
+				else if (paused == false) {
+				
+					Time.timeScale = 0;
+
+					paused = true;
+				
+				}
+				
+			
+			} 
+			else if (Time.fixedTime >= time_to_choose) {
+				
+				vaccine_menu.gameObject.SetActive (true);
+
+				Time.timeScale = 0;
+
+				time_to_choose = Time.fixedTime + 5.0f;
+			
+			}
+			else {
 				
 
 				calculatePower ();

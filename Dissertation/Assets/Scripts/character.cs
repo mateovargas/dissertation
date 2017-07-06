@@ -5,6 +5,11 @@ using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 using System.IO;
 
+/**
+ *Class that describes the behavior of the characters that move around on the game board. Controls the time between
+ *moves for each unit, as well as their random choice of direction. This also provides methods to handle the spread
+ *of infection through unit collision, as well as the recovery of units through vaccination or "natural" recovery.
+ **/
 public class character : movementController {
 
 	private SpriteRenderer renderer;
@@ -97,8 +102,9 @@ public class character : movementController {
 	 **/
 	public void infect (character hit_character){
 
-
 		sir.infect (this.gameObject, hit_character.gameObject);
+
+		color_cue ();
 
 	}
 
@@ -108,6 +114,8 @@ public class character : movementController {
 	public void recover(){
 	
 		sir.recover (this.gameObject);
+
+		color_cue ();
 	
 	}
 
@@ -129,24 +137,21 @@ public class character : movementController {
 	
 	}
 
-	//MOVE TOO FAST FOR THIS TO BE VIABLE. BUT IT WORKS
+	/**
+	 *Method that calls the vaccinate() method when a player clicks on an individual. This will only occur if the
+	 *individual that is clicked on is of the appropriate infection status (i.e. "susceptible"). It calls the 
+	 *color_cue() method at the end to notify the player of the change (if there is one).
+	 **/
 	void OnMouseDown(){
 
 		if (sir.get_vaccine_counters () > 0 && sir.get_individual_status(this.gameObject) == "susceptible") {
 		
 			vaccinate ();
-			return;
 		
 		}
 
-		/**Vector3 screen_point;
-		Vector3 offset;
-
-		screen_point = Camera.main.WorldToScreenPoint (gameObject.transform.position);
-
-		offset = gameObject.transform.position - 
-			Camera.main.WorldToScreenPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screen_point.z));**/
-		
+		color_cue ();
+			
 	}
 
 	//AS ABOVE. TRY TO GET IT TO APPEAR ABOVE THE WALL AND TO HAVE IT BOUNCE OFF WALL IF PLACED POORLY
@@ -162,6 +167,10 @@ public class character : movementController {
 
 	}**/
 
+	/**
+	 *Method to vaccinate the individual. Calls the sirGameModel class's vaccinate and passes in the current
+	 *game object.
+	 **/
 	void vaccinate(){
 	
 		sir.vaccinate (this.gameObject);
@@ -199,7 +208,6 @@ public class character : movementController {
 			}
 
 			sir.add_data ();
-			color_cue ();
 
 			time_to_move = Time.fixedTime + 0.5f;
 			

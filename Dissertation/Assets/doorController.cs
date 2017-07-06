@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ *Class that dictates the behavior of the door tiles. 
+ **/
 public class doorController : MonoBehaviour {
 
 
@@ -9,6 +12,9 @@ public class doorController : MonoBehaviour {
 	private SpriteRenderer renderer;
 	private BoxCollider2D box_collider;
 
+	/**
+	 *Initializes all doors to be open at the beginning.
+	 **/
 	void Start(){
 
 		renderer = GetComponent<SpriteRenderer> ();
@@ -22,7 +28,9 @@ public class doorController : MonoBehaviour {
 	
 	}
 
-
+	/**
+	 *Method to control the opening and closing of the door. 
+	 **/
 	void doorControl(){
 	
 		if (door_open == true) {
@@ -30,11 +38,7 @@ public class doorController : MonoBehaviour {
 			renderer.enabled = true;
 			box_collider.enabled = true;
 
-			//renderer.gameObject.SetActive (true);
-
 			door_open = false;
-
-			//Debug.Log ("Render is: " + renderer.gameObject.activeInHierarchy);
 		
 		} 
 		else if (door_open == false) {
@@ -42,14 +46,16 @@ public class doorController : MonoBehaviour {
 			renderer.enabled = false;
 			box_collider.enabled = false;
 		
-
 			door_open = true;
 
-		
 		}
 	
 	}
 
+	/**
+	 *Method to check for key presses every frame. Each door is tagged with DoorOne-DoorFour respectively. The
+	 *key pressed of Alpha1-Alpha4, as well as the tag, determine which door to open when a key press is detected.
+	 **/
 	void Update(){
 
 

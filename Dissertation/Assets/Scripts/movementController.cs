@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ *Abstract class that dictates the underlying behavior of unit movement. Used an abstract class to allow for a player
+ *character, however, only AI characters were used. 
+ **/
 public abstract class movementController : MonoBehaviour {
 
 	public float move_time = 0.1f;
@@ -12,7 +16,9 @@ public abstract class movementController : MonoBehaviour {
 	private float inverse_move_time;
 
 
-	// Use this for initialization
+	/**
+	 *Method that initializes the components needed for movement for each character. This is called in character.cs 
+	 **/
 	protected virtual void Start () {
 
 		box_collider = GetComponent<BoxCollider2D> ();
@@ -21,6 +27,10 @@ public abstract class movementController : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to move a unit. Takes in an x and y direction to move in and returns a RaycastHit2D component that 
+	 *dictates whether a move is possible or not.
+	 **/
 	protected bool move(int x_direction, int y_direction, out RaycastHit2D hit){
 	
 		Vector2 start = transform.position; //casting this vector 3 into vector 2
@@ -42,6 +52,10 @@ public abstract class movementController : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method that checks to see if a move is possible. It takes in an x and y direction and, if a move is not possible,
+	 *calls the onCantMove method in character.cs.
+	 **/
 	protected virtual void attemptMove <T> (int x_direction, int y_direction) where T : Component{
 	
 		RaycastHit2D hit;
@@ -63,6 +77,9 @@ public abstract class movementController : MonoBehaviour {
 	
 	}
 
+	/**
+	 *Method that enables the units to move smoothly throughout the board. 
+	 **/
 	protected IEnumerator smoothMovement(Vector3 end){
 	
 		float square_remaining_distance = (transform.position = end).sqrMagnitude; //computationally cheaper than magnitude
@@ -78,6 +95,9 @@ public abstract class movementController : MonoBehaviour {
 
 	}
 
+	/**
+	 *Abstact method to handle a collision. 
+	 **/
 	protected abstract void onCantMove <T> (T component) where T : Component;
 
 }

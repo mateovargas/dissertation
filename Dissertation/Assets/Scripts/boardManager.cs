@@ -4,10 +4,11 @@ using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
 
+/**
+ *This class controls the layout of the board. Instantiates the floor tiles, the wall tiles, the door tiles, and the 
+ *individual tiles at the beginning of the third scene (the main game scene).
+ **/
 public class boardManager : MonoBehaviour {
-
-
-
 
 	public int columns;
 	public int rows;
@@ -21,6 +22,9 @@ public class boardManager : MonoBehaviour {
 	private List <Vector3> grid_positions = new List<Vector3>();
 	private List <GameObject> characters = new List<GameObject> ();
 
+	/**
+	 *Method that initializes a list of all the possible grid locations on the game board.
+	 **/
 	void initializeList(){
 
 		grid_positions.Clear ();
@@ -37,6 +41,9 @@ public class boardManager : MonoBehaviour {
 			
 	}
 
+	/**
+	 *Method to set the game board up. Instantiates all the floor tiles and the outer wall tiles for the game board.
+	 **/
 	void boardSetup(){
 	
 		board_holder = new GameObject ("Board").transform;
@@ -70,6 +77,10 @@ public class boardManager : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to select a random positions vector from the list created in initializeList(). Once selected, it removes
+	 *that position from the list and returns the selected vector.
+	 **/
 	Vector3 RandomPosition(){
 	
 		int random_index = Random.Range (0, grid_positions.Count);
@@ -79,8 +90,11 @@ public class boardManager : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to layout the character tiles at random on the game board. The random positions are determined using the
+	 *RandomPosition() method. Each character is then placed in a list, to keep track of each individual.
+	 **/
 	void LayoutIndividualAtRandom(GameObject[] array){
-
 
 		for (int i = 0; i < individual_count; i++) {
 		
@@ -93,7 +107,11 @@ public class boardManager : MonoBehaviour {
 
 	}
 
-
+	/**
+	 *Method to layout the inner walls that make the corner rooms. Instantiates both the inner walls and the doors.
+	 *After instantiating them, the position they occupy is removed from the list of positions to prevent character
+	 *tiles being spawned on top of them.
+	 **/
 	void LayoutInnerWalls(){
 		
 		GameObject wall_tile = wall_tiles [0];
@@ -202,6 +220,10 @@ public class boardManager : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to set up the game board over all. It calls each of the required methods in their required order, with
+	 *the list being first and laying out individuals being last.
+	 **/
 	public void SetupScene(){
 	
 		initializeList ();
@@ -214,6 +236,9 @@ public class boardManager : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to get the list of characters.
+	 **/
 	public List <GameObject> getCharacters(){
 	
 		return characters;

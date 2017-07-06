@@ -96,12 +96,18 @@ public class sirGameModel : MonoBehaviour {
 	
 	}
 
+	/**
+	 *Method to get the vaccine counters. 
+	 **/
 	public int get_vaccine_counters(){
 	
 		return vaccine_counter;
 	
 	}
 
+	/**
+	 *Method to get the number of days.
+	 **/
 	public int get_days(){
 	
 		return day;
@@ -150,6 +156,15 @@ public class sirGameModel : MonoBehaviour {
 
 		recovery_rate = k;
 
+	}
+
+	/**
+	 *Method to set the vaccine counters.
+	 **/
+	public void set_vaccine_counter(int v){
+	
+		vaccine_counter = v;
+	
 	}
 		
 	/**
@@ -255,6 +270,9 @@ public class sirGameModel : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to vaccinate a unit. Takes in the unit to vaccinate as an argument.
+	 **/
 	public void vaccinate(GameObject character){
 	
 		if (vaccine_counter > 0) {
@@ -342,11 +360,12 @@ public class sirGameModel : MonoBehaviour {
 	
 	}
 
+	/**
+	 *Method to update the model every five seconds. 
+	 **/
 	void FixedUpdate(){
 
 		if (Time.fixedTime >= time_for_vaccine) {
-		
-			vaccine_counter++;
 
 			day++;
 
