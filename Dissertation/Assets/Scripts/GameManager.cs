@@ -6,11 +6,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ *Class that controls the overall behavior of the game. Instantiates the board and the SIR model, as well as the
+ *necessary UI. 
+ **/
 public class gameManager : MonoBehaviour {
 
 	public static gameManager instance = null;
 	private boardManager board_script;
-	private sirGameModel sir_model;
+	public sirGameModel sir_model;
+	public List<int> day;
+	public List<int> susceptible_count;
+	public List<int> infected_count;
+	public List<int> recovered_count;
 	private int score;
 	private int power;
 	private bool paused;
@@ -26,30 +34,42 @@ public class gameManager : MonoBehaviour {
 	private Image pause_menu;
 	private Image vaccine_menu;
 
-	// Use this for initialization
+	/**
+	 *Initializes the game manager overall. 
+	 **/
 	void Awake () {
 
 		if (instance == null) {
-
+			
 			instance = this;
 
 		} else if (instance != this) {
 		
 			Destroy (gameObject);
 
-		}
+		} 
 
+		//ENSURES THAT GAMEOBJECT AND ALL ATTACHED OBJECTS ARE RETAINED BETWEEN SCENES!
 		DontDestroyOnLoad (gameObject);
 
 		board_script = GetComponent<boardManager> ();
 		sir_model = GetComponent <sirGameModel> ();
+
+		day = new List<int> ();
+		susceptible_count = new List<int> ();
+		infected_count = new List<int> ();
+		recovered_count = new List<int> ();
+	
 		time_to_choose = Time.fixedTime + 5.0f;
 			
 		InitGame ();
 
 	}
 
-	//initializes the game for each level
+	/**
+	 *Method to initialize the game. Sets up the board and the model, as well as the initial score. Initializes all the
+	 *UI text.
+	 **/
 	void InitGame(){
 	
 		board_script.SetupScene ();
@@ -59,6 +79,8 @@ public class gameManager : MonoBehaviour {
 		power = 100;
 		paused = false;
 
+		add_data ();
+	
 		susceptible_text = GameObject.Find ("susceptible_text").GetComponent<Text> ();
 		infected_text = GameObject.Find ("infected_text").GetComponent<Text> ();
 		recovered_text = GameObject.Find ("recovered_text").GetComponent<Text> ();
@@ -69,11 +91,17 @@ public class gameManager : MonoBehaviour {
 		pause_menu = GameObject.Find ("PauseMenu").GetComponent<Image> ();
 		vaccine_menu = GameObject.Find ("VaccineMenu").GetComponent<Image> ();
 
+		//graph = GameObject.Find ("Graph").GetComponent<Image> ();
+		//graph.gameObject.SetActive (false);
+
 		updateText ();
 
 
 	}
 
+	/**
+	 *Method that updates the text with the current values for each UI element.
+	 **/
 	void updateText(){
 
 		susceptible_text.text = "Susceptible: " + sir_model.get_susceptible_count ();
@@ -92,6 +120,9 @@ public class gameManager : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method that calculates the current score. TO BE WORKED ON/
+	 **/
 	void calculateScore(){
 
 		score = score - (sir_model.get_infected_count () * 10)  - (sir_model.get_susceptible_count())
@@ -99,6 +130,9 @@ public class gameManager : MonoBehaviour {
 	
 	}
 
+	/**
+	 *Method to calculate the current power. TO BE WORKED ON.
+	 **/
 	void calculatePower(){
 	
 		if (power <= 25) {
@@ -114,6 +148,19 @@ public class gameManager : MonoBehaviour {
 	
 	}
 
+	void add_data(){
+	
+		day.Add (sir_model.get_days ());
+		susceptible_count.Add (sir_model.get_susceptible_count ());
+		infected_count.Add (sir_model.get_infected_count ());
+		recovered_count.Add (sir_model.get_recovered_count ());
+	
+	}
+
+	/**
+	 *Method to update the current state of the game. Checks for the press of a space, so the player can pause the
+	 *movement of characters. Also checks to see if the pause menu is activated.
+	 **/
 	void Update(){
 
 		if (SceneManager.GetActiveScene () == SceneManager.GetSceneByBuildIndex (2)) {
@@ -149,6 +196,12 @@ public class gameManager : MonoBehaviour {
 				Time.timeScale = 0;
 
 				time_to_choose = Time.fixedTime + 5.0f;
+
+			//	day.Add (sir_model.get_days ());
+			//	susceptible_count.Add (sir_model.get_susceptible_count ());
+
+				add_data ();
+
 			
 			}
 			else {

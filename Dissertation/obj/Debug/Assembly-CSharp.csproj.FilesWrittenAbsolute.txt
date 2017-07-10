@@ -20,3 +20,4 @@
 /Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/Assembly-CSharp.dll
 /Users/mateovargas/Documents/Dissertation/Dissertation/obj/Debug/Assembly-CSharp.dll
 /Users/mateovargas/Documents/Dissertation/Dissertation/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/Vectrosity.dll

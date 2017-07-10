@@ -1,12 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/pauseController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/graphController.cs">
     <Files>
-      <File FileName="Assets/Scripts/pauseController.cs" Line="28" Column="18" />
-      <File FileName="Assets/Scripts/sirGameModel.cs" Line="271" Column="5" />
-      <File FileName="Assets/Scripts/character.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/gameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/boardManager.cs" Line="259" Column="3" />
+      <File FileName="Assets/Scripts/character.cs" Line="193" Column="29" />
+      <File FileName="Assets/Scripts/boardManager.cs" Line="240" Column="41" />
+      <File FileName="Assets/Scripts/pauseController.cs" Line="28" Column="30" />
+      <File FileName="Assets/Scripts/gameManager.cs" Line="47" Column="82" />
+      <File FileName="Assets/Scripts/sirGameModel.cs" Line="321" Column="45" />
+      <File FileName="Assets/Scripts/menuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/movementController.cs" Line="99" Column="41" />
+      <File FileName="Assets/Scripts/graphController.cs" Line="16" Column="1" />
+      <File FileName="Assets/Vectrosity/Vectrosity Documentation/Vectrosity5 Upgrade Guide.txt" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

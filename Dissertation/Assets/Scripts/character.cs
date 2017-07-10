@@ -188,9 +188,12 @@ public class character : movementController {
 		if ((sir.get_recovered_count() == sir.get_population().Count) || 
 			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
 	
-			sir.print_data();
+			//sir.print_data();
 
-			SceneManager.LoadScene (0);
+			//Debug.Log ("printing done!");
+
+			//SWITCH TO GRAPH DATA
+			SceneManager.LoadScene (3);
 
 
 		}
@@ -207,7 +210,7 @@ public class character : movementController {
 
 			}
 
-			sir.add_data ();
+		//	/sir.add_data ();
 
 			time_to_move = Time.fixedTime + 0.5f;
 			

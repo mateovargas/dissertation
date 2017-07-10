@@ -32,7 +32,6 @@ public class sirGameModel : MonoBehaviour {
 	public float timer_in_seconds = 0;
 	public float level_timer = 0;
 
-
 	/**
 	 *Method to get the population dictionary.
 	 **/
@@ -112,6 +111,24 @@ public class sirGameModel : MonoBehaviour {
 	
 		return day;
 	
+	}
+
+	public Dictionary<float, int> get_susceptible_dict(){
+	
+		return susceptible_data;
+	
+	}
+
+	public Dictionary<float, int> get_infected_dict(){
+	
+		return infected_data;
+
+	}
+
+	public Dictionary<float, int> get_recovered_dict(){
+	
+		return recovered_data;
+
 	}
 
 	/**
@@ -288,9 +305,8 @@ public class sirGameModel : MonoBehaviour {
 
 	/**
 	 *Method to record population totals at each timepoint for the production of graphs and figures.
-	 **/
 	public void add_data(){
-		
+
 		if (!susceptible_data.ContainsKey (timer_in_seconds)) {
 		
 			susceptible_data.Add (timer_in_seconds, susceptible_count);
@@ -311,17 +327,18 @@ public class sirGameModel : MonoBehaviour {
 			
 
 	
-	}
+	}**/
 
 	/**
 	 *Method to print out the recorded data at each timepoint to csvs to be used as data tables. 
 	 **/
 	public void print_data(){
-	
+		
+		/**
 		using (var writer_s = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/susceptible.csv")) {
 
 			foreach (KeyValuePair<float, int> sus in susceptible_data) {
-				
+
 				string item_one_s = sus.Key.ToString();
 				string item_two_s = sus.Value.ToString();
 				string line = string.Format ("{0}, {1}", item_one_s, item_two_s);
@@ -335,7 +352,7 @@ public class sirGameModel : MonoBehaviour {
 		using (var writer_i = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/infected.csv")) {
 
 			foreach (KeyValuePair<float, int> inf in infected_data) {
-				
+
 				string item_one_i = inf.Key.ToString();
 				string item_two_i = inf.Value.ToString();
 				string line = string.Format ("{0}, {1}", item_one_i, item_two_i);
@@ -348,7 +365,7 @@ public class sirGameModel : MonoBehaviour {
 		using (var writer_r = new StreamWriter ("/Users/mateovargas/Documents/Dissertation/data/recovered.csv")) {
 
 			foreach (KeyValuePair<float, int> rec in recovered_data) {
-				
+
 				string item_one_r = rec.Key.ToString();
 				string item_two_r = rec.Value.ToString();
 				string line = string.Format ("{0}, {1}", item_one_r, item_two_r);
@@ -356,12 +373,12 @@ public class sirGameModel : MonoBehaviour {
 				writer_r.Flush ();
 
 			}
-		}
+		}**/
 	
 	}
 
 	/**
-	 *Method to update the model every five seconds. 
+	 *Method to update the model every five seconds.
 	 **/
 	void FixedUpdate(){
 

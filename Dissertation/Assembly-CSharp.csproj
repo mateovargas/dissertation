@@ -48,7 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\boardManager.cs" />
      <Compile Include="Assets\Scripts\character.cs" />
+     <Compile Include="Assets\Scripts\doorController.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
+     <Compile Include="Assets\Scripts\graphController.cs" />
      <Compile Include="Assets\Scripts\loaderManager.cs" />
      <Compile Include="Assets\Scripts\menuScript.cs" />
      <Compile Include="Assets\Scripts\movementController.cs" />
@@ -56,8 +58,10 @@
      <Compile Include="Assets\Scripts\sirGameModel.cs" />
      <Compile Include="Assets\Scripts\sirModel.cs" />
      <Compile Include="Assets\Scripts\textboxManager.cs" />
-     <Compile Include="Assets\doorController.cs" />
-     <Compile Include="Assets\vaccineMenuController.cs" />
+     <Compile Include="Assets\Scripts\vaccineMenuController.cs" />
+     <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity5 Upgrade Guide.txt" />
+     <None Include="Assets\Vectrosity\What to import!.txt" />
+     <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity changelog.txt" />
      <None Include="Assets\Sprites\Sci Art Pack\Changelog.txt" />
      <None Include="Assets\Text\SceneTwoText.txt" />
      <None Include="Assets\Text\Fonts\elite_danger\elitedanger.txt" />
@@ -81,6 +85,9 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="Vectrosity">
+ <HintPath>/Users/mateovargas/Documents/Dissertation/Dissertation/Assets/Vectrosity/Plugins/Vectrosity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
