@@ -41,6 +41,8 @@ public class vaccineMenuController : MonoBehaviour {
 		sirGameModel sir = GameObject.Find ("gameManager").GetComponent<sirGameModel> ();
 		sir.set_vaccine_counter (sir.get_vaccine_counters () + 1);
 
+		gameManager.instance.calculatePower ();
+
 		vaccine_menu.gameObject.SetActive (false);
 		Time.timeScale = 1;
 

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\character.cs" />
      <Compile Include="Assets\Scripts\doorController.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
+     <Compile Include="Assets\Scripts\graphButtonController.cs" />
      <Compile Include="Assets\Scripts\graphController.cs" />
      <Compile Include="Assets\Scripts\loaderManager.cs" />
      <Compile Include="Assets\Scripts\menuScript.cs" />

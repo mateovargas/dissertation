@@ -19,6 +19,8 @@ public class gameManager : MonoBehaviour {
 	public List<int> susceptible_count;
 	public List<int> infected_count;
 	public List<int> recovered_count;
+	public int total;
+	public int round = 0;
 	private int score;
 	private int power;
 	private bool paused;
@@ -50,7 +52,10 @@ public class gameManager : MonoBehaviour {
 		} 
 
 		//ENSURES THAT GAMEOBJECT AND ALL ATTACHED OBJECTS ARE RETAINED BETWEEN SCENES!
+			
 		DontDestroyOnLoad (gameObject);
+
+
 
 		board_script = GetComponent<boardManager> ();
 		sir_model = GetComponent <sirGameModel> ();
@@ -78,6 +83,7 @@ public class gameManager : MonoBehaviour {
 		score = 1000;
 		power = 100;
 		paused = false;
+		total = board_script.individual_count;
 
 		add_data ();
 	
@@ -114,7 +120,15 @@ public class gameManager : MonoBehaviour {
 
 		score_text.text = "Score: " + score;
 
-		power_text.text = "Power: " + power;
+		if (power <= 0) {
+
+			power_text.text = "Power: " + 0;
+
+		} else {
+		
+			power_text.text = "Power: " + power;
+		
+		}
 
 		day_text.text = "Day: " + sir_model.get_days ();
 
@@ -125,27 +139,50 @@ public class gameManager : MonoBehaviour {
 	 **/
 	void calculateScore(){
 
-		score = score - (sir_model.get_infected_count () * 10)  - (sir_model.get_susceptible_count())
-				+ (sir_model.get_recovered_count()*5) ;
+		if (power < 100 && power >= 80) {
+		
+			score = score - 100;
+		
+		} 
+		else if (power >= 60 && power < 80) {
+		
+			score = score - 200;
+		
+		}
+		else if (power < 60 && power >= 40) {
+		
+			score = score - 300;
+
+		} 
+		else if (power < 40 && power >= 20) {
+		
+			score = score - 400;
+		
+		} 
+		else if (power < 20 && power >= 0) {
+		
+			score = score - 500;
+		
+		}
+
+		score = score - (sir_model.get_infected_count () * 5) + (sir_model.get_recovered_count() * 5);
 	
 	}
 
 	/**
 	 *Method to calculate the current power. TO BE WORKED ON.
 	 **/
-	void calculatePower(){
-	
-		if (power <= 25) {
+	public void calculatePower(){
 
+		power = power - 10;
+
+		if (power <= 0) {
+
+			power = 0;
 			return;
 		
 		} 
-		else {
 
-			power = power - ((sir_model.get_vaccine_counters()-2) * 25);
-		
-		}
-	
 	}
 
 	void add_data(){
@@ -157,12 +194,23 @@ public class gameManager : MonoBehaviour {
 	
 	}
 
+	public void restoreManager(){
+
+		day.Clear ();
+		susceptible_count.Clear ();
+		infected_count.Clear ();
+		recovered_count.Clear ();
+		sir_model.get_population ().Clear ();
+
+	
+	}
+
 	/**
 	 *Method to update the current state of the game. Checks for the press of a space, so the player can pause the
 	 *movement of characters. Also checks to see if the pause menu is activated.
 	 **/
 	void Update(){
-
+		
 		if (SceneManager.GetActiveScene () == SceneManager.GetSceneByBuildIndex (2)) {
 
 			if (pause_menu.gameObject.activeInHierarchy == true) {
@@ -190,7 +238,9 @@ public class gameManager : MonoBehaviour {
 			
 			} 
 			else if (Time.fixedTime >= time_to_choose) {
-				
+
+				calculateScore ();
+
 				vaccine_menu.gameObject.SetActive (true);
 
 				Time.timeScale = 0;
@@ -202,15 +252,12 @@ public class gameManager : MonoBehaviour {
 
 				add_data ();
 
+				calculateScore ();
+
 			
 			}
 			else {
 				
-
-				calculatePower ();
-
-				calculateScore ();
-
 				updateText ();
 
 			}

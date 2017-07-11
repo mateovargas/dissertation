@@ -91,6 +91,7 @@
 'Assets/Scripts/character.cs'
 'Assets/Scripts/doorController.cs'
 'Assets/Scripts/gameManager.cs'
+'Assets/Scripts/graphButtonController.cs'
 'Assets/Scripts/graphController.cs'
 'Assets/Scripts/loaderManager.cs'
 'Assets/Scripts/menuScript.cs'
