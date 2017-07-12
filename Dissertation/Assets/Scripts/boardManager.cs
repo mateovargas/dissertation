@@ -224,8 +224,10 @@ public class boardManager : MonoBehaviour {
 	 *Method to set up the game board over all. It calls each of the required methods in their required order, with
 	 *the list being first and laying out individuals being last.
 	 **/
-	public void SetupScene(){
+	public void SetupScene(int individual_count){
 	
+		this.individual_count = individual_count;
+
 		initializeList ();
 
 		boardSetup ();

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\pauseController.cs" />
      <Compile Include="Assets\Scripts\sirGameModel.cs" />
      <Compile Include="Assets\Scripts\sirModel.cs" />
+     <Compile Include="Assets\Scripts\soundController.cs" />
      <Compile Include="Assets\Scripts\textboxManager.cs" />
      <Compile Include="Assets\Scripts\vaccineMenuController.cs" />
      <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity5 Upgrade Guide.txt" />

@@ -7,7 +7,7 @@ using UnityEngine;
  **/
 public class doorController : MonoBehaviour {
 
-
+	public AudioClip door_sound;
 	private bool door_open;
 	private SpriteRenderer renderer;
 	private BoxCollider2D box_collider;
@@ -50,6 +50,7 @@ public class doorController : MonoBehaviour {
 
 		}
 	
+		soundController.instance.PlaySingle (door_sound);
 	}
 
 	/**

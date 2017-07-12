@@ -20,8 +20,8 @@ public class gameManager : MonoBehaviour {
 	public List<int> infected_count;
 	public List<int> recovered_count;
 	public int total;
-	public int round = 0;
-	private int score;
+	public int level = 4;
+	public int score;
 	private int power;
 	private bool paused;
 	private float time_to_choose;
@@ -66,6 +66,7 @@ public class gameManager : MonoBehaviour {
 		recovered_count = new List<int> ();
 	
 		time_to_choose = Time.fixedTime + 5.0f;
+		level = 3;
 			
 		InitGame ();
 
@@ -77,7 +78,25 @@ public class gameManager : MonoBehaviour {
 	 **/
 	void InitGame(){
 	
-		board_script.SetupScene ();
+		if (level == 1) {
+		
+			board_script.SetupScene (50);
+		
+		} else if (level == 2) {
+		
+			board_script.SetupScene (100);
+		
+		} else if (level == 3) {
+		
+			board_script.SetupScene (150);
+
+		} else if (level == 4) {
+		
+			board_script.SetupScene (200);
+		
+		}
+
+		//board_script.SetupScene ();
 		sir_model.setupModel ();
 
 		score = 1000;
@@ -165,7 +184,7 @@ public class gameManager : MonoBehaviour {
 		
 		}
 
-		score = score - (sir_model.get_infected_count () * 5) + (sir_model.get_recovered_count() * 5);
+		score = score - (sir_model.get_infected_count () * 4) + (sir_model.get_recovered_count() * 5);
 	
 	}
 
@@ -185,6 +204,9 @@ public class gameManager : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to update the data from the model to be used in the graph at the end.
+	 **/
 	void add_data(){
 	
 		day.Add (sir_model.get_days ());
@@ -194,7 +216,7 @@ public class gameManager : MonoBehaviour {
 	
 	}
 
-	public void restoreManager(){
+	/**public void restoreManager(){
 
 		day.Clear ();
 		susceptible_count.Clear ();
@@ -203,7 +225,7 @@ public class gameManager : MonoBehaviour {
 		sir_model.get_population ().Clear ();
 
 	
-	}
+	}**/
 
 	/**
 	 *Method to update the current state of the game. Checks for the press of a space, so the player can pause the
@@ -212,6 +234,12 @@ public class gameManager : MonoBehaviour {
 	void Update(){
 		
 		if (SceneManager.GetActiveScene () == SceneManager.GetSceneByBuildIndex (2)) {
+
+			if (sir_model.get_done_flag () == true) {
+			
+				level++;
+			
+			}
 
 			if (pause_menu.gameObject.activeInHierarchy == true) {
 			
@@ -246,10 +274,7 @@ public class gameManager : MonoBehaviour {
 				Time.timeScale = 0;
 
 				time_to_choose = Time.fixedTime + 5.0f;
-
-			//	day.Add (sir_model.get_days ());
-			//	susceptible_count.Add (sir_model.get_susceptible_count ());
-
+				
 				add_data ();
 
 				calculateScore ();

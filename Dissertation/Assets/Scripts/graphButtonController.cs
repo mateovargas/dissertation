@@ -4,27 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ *Class that describes the behavior of the button on the graph scene. 
+ **/
 public class graphButtonController : MonoBehaviour {
 
 	public Button next_level;
 	private Text next_text;
-	private gameManager game_manager;
 
 	void Start(){
 	
 		next_level = next_level.GetComponent<Button> ();
-		game_manager = gameManager.instance;
-
-		//next_text = next_text.GetComponent<Text> ();
-		//next_text.text = "Return to main menu.";
-
+		//GameObject game_manager = GameObject.Find ("gameManager");
 	
 	}
 
+	/**
+	 *Method to load the next level of the game. Exits game after the last level.
+	 **/
 	public void onNextPress(){
 
-		Destroy (game_manager);
-		SceneManager.LoadScene (0);
+		if (gameManager.instance.level >= 4) {
+		
+			Application.Quit ();
+		
+		}
+
+		SceneManager.LoadScene (2);
 	
 	}
 

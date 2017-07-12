@@ -4,6 +4,10 @@ using UnityEngine;
 using Vectrosity;
 using UnityEngine.UI;
 
+/**
+ *Class that describes the behavior of the graph that displays at the end of a level. Uses the Vectrosity library that
+ *is available for use in conjunction with Unity.
+ **/
 public class graphController : MonoBehaviour {
 
 	private Text title;
@@ -12,8 +16,11 @@ public class graphController : MonoBehaviour {
 	private Text rec_text;
 	private Text x_title;
 	private Text y_title;
+	private Text score;
 
-	// Use this for initialization
+	/**
+	 *Method start up the graphy controller and lay out the graph.
+	 **/
 	void Start () {
 
 		title = GameObject.Find ("title").GetComponent<Text> ();
@@ -22,7 +29,7 @@ public class graphController : MonoBehaviour {
 		rec_text = GameObject.Find ("rec_text").GetComponent<Text> ();
 		x_title = GameObject.Find ("x_title").GetComponent<Text> ();
 		y_title = GameObject.Find ("y_title").GetComponent<Text> ();
-
+		score = GameObject.Find ("score_text").GetComponent<Text> ();
 
 		title.text = "SIR Model over Time in Days";
 		sus_text.text = "Susceptible";
@@ -30,17 +37,13 @@ public class graphController : MonoBehaviour {
 		rec_text.text = "Recovered";
 		x_title.text = "Number of Days";
 		y_title.text = "Number of Individuals";
-
-
+		score.text = "Score: " + gameManager.instance.score.ToString ();
 
 		int total = gameManager.instance.total;
 		List<int> day = gameManager.instance.day;
 		List<int> sus_count = gameManager.instance.susceptible_count;
 		List<int> inf_count = gameManager.instance.infected_count;
 		List<int> rec_count = gameManager.instance.recovered_count;
-
-		//int x_length = (Screen.width / (day.Count));
-
 
 		for (int i = 1; i < day.Count; i++) {
 
@@ -52,9 +55,6 @@ public class graphController : MonoBehaviour {
 			int y_inf_two = ((inf_count [i] * Screen.height) / total);
 			int y_rec_one = ((rec_count [i - 1] * Screen.height) / total);
 			int y_rec_two = ((rec_count [i] * Screen.height) / total);
-
-
-
 
 			VectorLine.SetLine (Color.black, new Vector2 (x_one, y_sus_one), 
 				new Vector2 (x_two, y_sus_two));

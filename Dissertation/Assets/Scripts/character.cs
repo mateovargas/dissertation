@@ -17,7 +17,9 @@ public class character : movementController {
 	private sirGameModel sir;
 	float time_to_move;
 	float time_to_recover;
-	int day_counter;
+	public AudioClip infect_sound;
+	public AudioClip recover_sound;
+	public AudioClip game_over_sound;
 
 	/**
 	 *Method to star the character script.
@@ -102,9 +104,17 @@ public class character : movementController {
 	 **/
 	public void infect (character hit_character){
 
+		int current_infect_count = sir.get_infected_count ();
+
 		sir.infect (this.gameObject, hit_character.gameObject);
 
 		color_cue ();
+
+		if (sir.get_infected_count() > current_infect_count) {
+
+			soundController.instance.PlaySingle (infect_sound);
+
+		} 
 
 	}
 
@@ -116,6 +126,12 @@ public class character : movementController {
 		sir.recover (this.gameObject);
 
 		color_cue ();
+
+		if (sir.get_individual_status (this.gameObject) == "recovered") {
+
+			soundController.instance.PlaySingle (recover_sound);
+
+		} 
 	
 	}
 
@@ -175,6 +191,12 @@ public class character : movementController {
 	
 		sir.vaccinate (this.gameObject);
 
+		if (sir.get_individual_status (this.gameObject) == "recovered") {
+
+			soundController.instance.PlaySingle (recover_sound);
+
+		} 
+
 	}
 
 	/**
@@ -193,6 +215,10 @@ public class character : movementController {
 			//Debug.Log ("printing done!");
 
 			//SWITCH TO GRAPH DATA
+
+			soundController.instance.PlaySingle (game_over_sound);
+			sir.set_done_flag(true);
+
 			SceneManager.LoadScene (3);
 
 
@@ -215,8 +241,6 @@ public class character : movementController {
 			time_to_move = Time.fixedTime + 0.5f;
 			
 		}
-
-		day_counter = sir.get_days ();
 			
 	}
 

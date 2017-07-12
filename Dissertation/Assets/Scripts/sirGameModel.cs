@@ -28,6 +28,7 @@ public class sirGameModel : MonoBehaviour {
 	private int vaccine_counter;
 	private float time_for_vaccine;
 	private int day;
+	private bool done;
 
 	public float timer_in_seconds = 0;
 	public float level_timer = 0;
@@ -131,6 +132,19 @@ public class sirGameModel : MonoBehaviour {
 
 	}
 
+	public bool get_done_flag(){
+	
+		return done;
+	
+	}
+
+
+	public void set_done_flag(bool flag){
+	
+		done = flag;
+	
+	}
+
 	/**
 	 *Method to set the number of susceptible individuals.
 	 **/
@@ -190,6 +204,8 @@ public class sirGameModel : MonoBehaviour {
 	 **/
 	public void setupModel(){
 		
+		done = false;
+
 		population = new Dictionary<GameObject, string> ();
 
 		boardManager board = GetComponent<boardManager> ();
@@ -331,7 +347,7 @@ public class sirGameModel : MonoBehaviour {
 
 	/**
 	 *Method to print out the recorded data at each timepoint to csvs to be used as data tables. 
-	 **/
+
 	public void print_data(){
 		
 		/**
@@ -373,9 +389,8 @@ public class sirGameModel : MonoBehaviour {
 				writer_r.Flush ();
 
 			}
-		}**/
-	
-	}
+		}
+	}**/
 
 	/**
 	 *Method to update the model every five seconds.
