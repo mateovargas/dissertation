@@ -21,3 +21,7 @@
 /Users/mateovargas/Documents/Dissertation/Dissertation/obj/Debug/Assembly-CSharp.dll
 /Users/mateovargas/Documents/Dissertation/Dissertation/obj/Debug/Assembly-CSharp.dll.mdb
 /Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/Vectrosity.dll
+/Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/Facebook.Unity.Settings.dll
+/Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/UnityEngine.Timeline.dll
+/Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/ExCSS.Unity.dll
+/Users/mateovargas/Documents/Dissertation/Dissertation/Temp/bin/Debug/Unity.Legacy.NRefactory.dll

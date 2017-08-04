@@ -70,7 +70,7 @@ public class textboxManager : MonoBehaviour {
 
 		}
 			
-		if ((current_line == repeat_instructions) && (SceneManager.GetActiveScene().buildIndex == 1 )) {
+		if ((current_line == end_at_line) && (SceneManager.GetActiveScene().buildIndex == 1 )) {
 
 			continue_text.gameObject.SetActive (true);
 			repeat_text.gameObject.SetActive (true);

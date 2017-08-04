@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /**
- *Class that controls the Start menu of the game. TO DO: Extend for credits.
+ *Class that controls the Start menu of the game.
  **/
 public class menuScript : MonoBehaviour {
 
@@ -13,6 +13,8 @@ public class menuScript : MonoBehaviour {
 	public Canvas quitMenu;
 	public Button startText;
 	public Button exitText;
+	public Canvas creditsMenu;
+	public Button creditsText;
 
 	/**
 	 *Method that starts the menu upon entering the scene. Gets the components for the text and menu, and disables the
@@ -21,10 +23,14 @@ public class menuScript : MonoBehaviour {
 	void Start () {
 
 		quitMenu = quitMenu.GetComponent<Canvas> ();
+		creditsMenu = creditsMenu.GetComponent<Canvas> ();
+
 		startText = startText.GetComponent<Button> ();
 		exitText = exitText.GetComponent<Button> ();
-		quitMenu.enabled = false;
+		creditsText = creditsText.GetComponent<Button> ();
 
+		quitMenu.enabled = false;
+		creditsMenu.enabled = false;
 	}
 
 	/**
@@ -35,6 +41,17 @@ public class menuScript : MonoBehaviour {
 		quitMenu.enabled = true; //shows quit menu
 		startText.gameObject.SetActive(false);//hides start text
 		exitText.gameObject.SetActive(false); //hides exit text
+		creditsText.gameObject.SetActive(false);
+
+	}
+
+	public void CreditsPress(){
+
+		creditsMenu.enabled = true;
+		startText.gameObject.SetActive (false);
+		exitText.gameObject.SetActive (false);
+		creditsText.gameObject.SetActive (false);
+		
 
 	}
 
@@ -44,8 +61,10 @@ public class menuScript : MonoBehaviour {
 	public void NoPress(){
 	
 		quitMenu.enabled = false; //hides quit menu
+		creditsMenu.enabled = false;
 		startText.gameObject.SetActive(true); //shows start text
 		exitText.gameObject.SetActive(true); //shows exit text
+		creditsText.gameObject.SetActive(true);
 
 	}
 

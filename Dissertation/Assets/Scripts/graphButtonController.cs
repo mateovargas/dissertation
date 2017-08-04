@@ -24,13 +24,13 @@ public class graphButtonController : MonoBehaviour {
 	 **/
 	public void onNextPress(){
 
-		if (gameManager.instance.level >= 4) {
+	/**	if (gameManager.instance.level >= 4) {
 		
 			Application.Quit ();
 		
-		}
-
-		SceneManager.LoadScene (2);
+		}**/
+			
+		Application.Quit ();
 	
 	}
 

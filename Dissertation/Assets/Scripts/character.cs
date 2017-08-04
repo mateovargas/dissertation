@@ -34,6 +34,8 @@ public class character : movementController {
 
 		time_to_recover = Time.fixedTime + 5.0f;
 
+		color_cue ();
+
 		base.Start();
 	}
 
@@ -141,13 +143,16 @@ public class character : movementController {
 	public void color_cue(){
 
 		if (sir.get_individual_status (this.gameObject) == "infected") {
-		
-			renderer.color = Color.blue;	
 
-		} 
-		else if (sir.get_individual_status (this.gameObject) == "recovered") {
+			renderer.color = Color.green;	
+
+		} else if (sir.get_individual_status (this.gameObject) == "recovered") {
 		
-			renderer.color = Color.green;
+			renderer.color = Color.red;
+		
+		} else if (sir.get_individual_status (this.gameObject) == "susceptible") {
+		
+			renderer.color = Color.blue;
 		
 		}
 	
@@ -210,17 +215,10 @@ public class character : movementController {
 		if ((sir.get_recovered_count() == sir.get_population().Count) || 
 			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
 	
-			//sir.print_data();
-
-			//Debug.Log ("printing done!");
-
-			//SWITCH TO GRAPH DATA
-
 			soundController.instance.PlaySingle (game_over_sound);
 			sir.set_done_flag(true);
 
 			SceneManager.LoadScene (3);
-
 
 		}
 
@@ -235,8 +233,7 @@ public class character : movementController {
 				time_to_recover = Time.fixedTime + 5.0f;
 
 			}
-
-		//	/sir.add_data ();
+				
 
 			time_to_move = Time.fixedTime + 0.5f;
 			

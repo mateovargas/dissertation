@@ -20,8 +20,9 @@ public class gameManager : MonoBehaviour {
 	public List<int> infected_count;
 	public List<int> recovered_count;
 	public int total;
-	public int level = 4;
+	public int level;
 	public int score;
+	private int max_infected;
 	private int power;
 	private bool paused;
 	private float time_to_choose;
@@ -102,6 +103,7 @@ public class gameManager : MonoBehaviour {
 		score = 1000;
 		power = 100;
 		paused = false;
+		max_infected = 0;
 		total = board_script.individual_count;
 
 		add_data ();
@@ -160,31 +162,32 @@ public class gameManager : MonoBehaviour {
 
 		if (power < 100 && power >= 80) {
 		
-			score = score - 100;
+			score = score - 10;
 		
 		} 
 		else if (power >= 60 && power < 80) {
 		
-			score = score - 200;
+			score = score - 20;
 		
 		}
 		else if (power < 60 && power >= 40) {
 		
-			score = score - 300;
+			score = score - 30;
 
 		} 
 		else if (power < 40 && power >= 20) {
 		
-			score = score - 400;
+			score = score - 40;
 		
 		} 
 		else if (power < 20 && power >= 0) {
 		
-			score = score - 500;
+			score = score - 50;
 		
 		}
 
-		score = score - (sir_model.get_infected_count () * 4) + (sir_model.get_recovered_count() * 5);
+		score = score + (sir_model.get_recovered_count() * 5) - (sir_model.get_days()/5);
+		score = (score / (max_infected / 10));
 	
 	}
 
@@ -209,23 +212,17 @@ public class gameManager : MonoBehaviour {
 	 **/
 	void add_data(){
 	
+		if (sir_model.get_infected_count () >= max_infected) {
+		
+			max_infected = sir_model.get_infected_count ();
+		
+		}
 		day.Add (sir_model.get_days ());
 		susceptible_count.Add (sir_model.get_susceptible_count ());
 		infected_count.Add (sir_model.get_infected_count ());
 		recovered_count.Add (sir_model.get_recovered_count ());
 	
 	}
-
-	/**public void restoreManager(){
-
-		day.Clear ();
-		susceptible_count.Clear ();
-		infected_count.Clear ();
-		recovered_count.Clear ();
-		sir_model.get_population ().Clear ();
-
-	
-	}**/
 
 	/**
 	 *Method to update the current state of the game. Checks for the press of a space, so the player can pause the
@@ -234,12 +231,6 @@ public class gameManager : MonoBehaviour {
 	void Update(){
 		
 		if (SceneManager.GetActiveScene () == SceneManager.GetSceneByBuildIndex (2)) {
-
-			if (sir_model.get_done_flag () == true) {
-			
-				level++;
-			
-			}
 
 			if (pause_menu.gameObject.activeInHierarchy == true) {
 			

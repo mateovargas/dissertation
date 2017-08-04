@@ -2,18 +2,20 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/character.cs">
     <Files>
-      <File FileName="Assets/Scripts/graphController.cs" Line="40" Column="67" />
-      <File FileName="Assets/Scripts/character.cs" Line="117" Column="5" />
-      <File FileName="Assets/Scripts/boardManager.cs" Line="15" Column="30" />
+      <File FileName="Assets/Text/SceneTwoText.txt" Line="2" Column="113" />
+      <File FileName="Assets/Scripts/character.cs" Line="38" Column="3" />
+      <File FileName="Assets/Scripts/sirGameModel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/textboxManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/soundController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/menuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/movementController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/graphButtonController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/graphController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/boardManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/pauseController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/gameManager.cs" Line="187" Column="55" />
-      <File FileName="Assets/Scripts/movementController.cs" Line="72" Column="26" />
-      <File FileName="Assets/Scripts/menuScript.cs" Line="12" Column="2" />
-      <File FileName="Assets/Scripts/graphButtonController.cs" Line="17" Column="51" />
+      <File FileName="Assets/Scripts/gameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/vaccineMenuController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/sirGameModel.cs" Line="372" Column="41" />
-      <File FileName="Assets/Scripts/soundController.cs" Line="46" Column="4" />
-      <File FileName="Assets/Scripts/doorController.cs" Line="53" Column="52" />
+      <File FileName="Assets/Scripts/doorController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
