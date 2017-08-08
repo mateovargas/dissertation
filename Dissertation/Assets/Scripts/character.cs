@@ -118,7 +118,7 @@ public class character : movementController {
 
 		if (sir.get_infected_count() > current_infect_count) {
 
-			//soundController.instance.PlaySingle (infect_sound);
+			soundController.instance.PlaySingle (infect_sound);
 
 		} 
 

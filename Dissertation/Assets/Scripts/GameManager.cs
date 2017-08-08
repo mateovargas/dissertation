@@ -52,12 +52,8 @@ public class gameManager : MonoBehaviour {
 			Destroy (gameObject);
 
 		} 
-
-		//ENSURES THAT GAMEOBJECT AND ALL ATTACHED OBJECTS ARE RETAINED BETWEEN SCENES!
 			
 		DontDestroyOnLoad (gameObject);
-
-
 
 		board_script = GetComponent<boardManager> ();
 		sir_model = GetComponent <sirGameModel> ();
@@ -97,8 +93,7 @@ public class gameManager : MonoBehaviour {
 			board_script.SetupScene (200);
 		
 		}
-
-		//board_script.SetupScene ();
+			
 		sir_model.setupModel ();
 
 		score = 1000;
@@ -118,9 +113,6 @@ public class gameManager : MonoBehaviour {
 		day_text = GameObject.Find ("Days").GetComponent<Text> ();
 		pause_menu = GameObject.Find ("PauseMenu").GetComponent<Image> ();
 		vaccine_menu = GameObject.Find ("VaccineMenu").GetComponent<Image> ();
-
-		//graph = GameObject.Find ("Graph").GetComponent<Image> ();
-		//graph.gameObject.SetActive (false);
 
 		updateText ();
 

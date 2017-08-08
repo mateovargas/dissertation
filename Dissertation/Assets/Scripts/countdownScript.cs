@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+/**
+ *Class that defines the countdown at the beginning of gameplay. 
+ **/
 public class countdownScript : MonoBehaviour {
 
 	private gameManager game_manager;
@@ -12,7 +15,9 @@ public class countdownScript : MonoBehaviour {
 	float time;
 	int counter;
 
-
+	/**
+	 *Method to set the flag in game_manager to true and deactivate countdown UI.
+	 **/
 	public void setCountDown(){
 	
 		game_manager = GameObject.Find ("gameManager").GetComponent<gameManager> ();
@@ -23,6 +28,9 @@ public class countdownScript : MonoBehaviour {
 	
 	}
 
+	/**
+	 *Method to initialize the countdown to count down every second until Go!
+	 **/
 	void Start(){
 
 		countdown_text = GameObject.Find ("countdown_text").GetComponent<Text> ();
@@ -35,6 +43,9 @@ public class countdownScript : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to update the countdown text. 
+	 **/
 	void Update(){
 
 		if (counter < countdown_strings.Length) {

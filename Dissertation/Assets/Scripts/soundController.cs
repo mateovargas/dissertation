@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ *Class that defines the sound controller to control all the sounds in the game. 
+ **/
 public class soundController : MonoBehaviour {
 
 	public AudioSource efxSource;
@@ -11,7 +14,9 @@ public class soundController : MonoBehaviour {
 	public float highPitchRange = 1.05f;
 
 
-	// Use this for initialization
+	/**
+	 *Method to initialize the sound controller. Follows the singleton pattern. 
+	 **/
 	void Awake () {
 
 		if (instance == null) {
@@ -29,6 +34,9 @@ public class soundController : MonoBehaviour {
 
 	}
 
+	/**
+	 *Method to play a single sound. 
+	 **/
 	public void PlaySingle (AudioClip clip){
 	
 		efxSource.clip = clip;
@@ -37,6 +45,9 @@ public class soundController : MonoBehaviour {
 	
 	}
 
+	/**
+	 *Method to randomize sound. Remained unused in prototype. 
+	 **/
 	public void RandomizeSfx(params AudioClip[] clips){
 	
 		int randomIndex = Random.Range (0, clips.Length);
