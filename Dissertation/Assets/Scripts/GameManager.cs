@@ -13,7 +13,8 @@ using UnityEngine.SceneManagement;
 public class gameManager : MonoBehaviour {
 
 	public static gameManager instance = null;
-	private boardManager board_script;
+	public bool countDownDone = false;
+	public boardManager board_script;
 	public sirGameModel sir_model;
 	public List<int> day;
 	public List<int> susceptible_count;
@@ -66,7 +67,7 @@ public class gameManager : MonoBehaviour {
 		infected_count = new List<int> ();
 		recovered_count = new List<int> ();
 	
-		time_to_choose = Time.fixedTime + 5.0f;
+		time_to_choose = Time.fixedTime + 10.0f;
 		level = 3;
 			
 		InitGame ();
@@ -229,6 +230,12 @@ public class gameManager : MonoBehaviour {
 	 *movement of characters. Also checks to see if the pause menu is activated.
 	 **/
 	void Update(){
+
+		if (countDownDone == false) {
+
+			return;
+		
+		}
 		
 		if (SceneManager.GetActiveScene () == SceneManager.GetSceneByBuildIndex (2)) {
 

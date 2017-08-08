@@ -240,7 +240,7 @@ public class sirGameModel : MonoBehaviour {
 
 
 		level_timer = 0.0f;
-		time_for_vaccine = Time.fixedTime + 5.0f;
+		time_for_vaccine = Time.fixedTime + .0f;
 	
 	}
 
@@ -257,7 +257,6 @@ public class sirGameModel : MonoBehaviour {
 			return;
 
 		}
-
 		int random_chance = Random.Range (0, 1000); //CHANGE DEPENDING ON THE INFECTION RATE (USING 1/3)
 
 

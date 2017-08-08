@@ -55,6 +55,14 @@ public class textboxManager : MonoBehaviour {
 	 * */
 	void Update(){
 
+		if ((current_line == end_at_line) && (SceneManager.GetActiveScene().buildIndex == 1 )) {
+
+			continue_text.gameObject.SetActive (true);
+			repeat_text.gameObject.SetActive (true);
+			return;
+
+		}
+
 		text.text = text_lines [current_line];
 
 		if ((Input.GetKeyDown(KeyCode.Mouse0)) && current_line < end_at_line) {
@@ -67,13 +75,6 @@ public class textboxManager : MonoBehaviour {
 
 			sprite_renderer_one.enabled = false;
 			sprite_renderer_two.enabled = true;
-
-		}
-			
-		if ((current_line == end_at_line) && (SceneManager.GetActiveScene().buildIndex == 1 )) {
-
-			continue_text.gameObject.SetActive (true);
-			repeat_text.gameObject.SetActive (true);
 
 		}
 

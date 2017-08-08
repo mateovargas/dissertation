@@ -15,7 +15,6 @@ public class graphButtonController : MonoBehaviour {
 	void Start(){
 	
 		next_level = next_level.GetComponent<Button> ();
-		//GameObject game_manager = GameObject.Find ("gameManager");
 	
 	}
 
@@ -23,13 +22,7 @@ public class graphButtonController : MonoBehaviour {
 	 *Method to load the next level of the game. Exits game after the last level.
 	 **/
 	public void onNextPress(){
-
-	/**	if (gameManager.instance.level >= 4) {
-		
-			Application.Quit ();
-		
-		}**/
-			
+				
 		Application.Quit ();
 	
 	}

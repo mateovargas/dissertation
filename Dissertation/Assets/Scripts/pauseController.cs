@@ -13,7 +13,6 @@ public class pauseController : MonoBehaviour {
 
 	public Image pause_menu;
 	public Button resume_text;
-	public Button exit_text;
 	public Button quit_text;
 	public Text pause_text;
 
@@ -28,8 +27,6 @@ public class pauseController : MonoBehaviour {
 		pause_text.text = "PAUSED";
 
 		resume_text = resume_text.GetComponent<Button> ();
-
-		exit_text = exit_text.GetComponent<Button> ();
 
 		quit_text = quit_text.GetComponent<Button> ();
 
@@ -46,15 +43,7 @@ public class pauseController : MonoBehaviour {
 		pause ();
 		
 	}
-
-	/**
-	 *Method that loads the main menu when the exit to main menu button is pressed. 
-	 **/
-	public void exitPress(){
-	
-		SceneManager.LoadScene (0);
-	
-	}
+		
 
 	/**
 	 *Method to exit the application when the quit game is presssed. 

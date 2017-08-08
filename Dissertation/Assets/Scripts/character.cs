@@ -15,8 +15,11 @@ public class character : movementController {
 	private SpriteRenderer renderer;
 	private string status;
 	private sirGameModel sir;
+	private gameManager game_manager;
+
 	float time_to_move;
 	float time_to_recover;
+
 	public AudioClip infect_sound;
 	public AudioClip recover_sound;
 	public AudioClip game_over_sound;
@@ -27,6 +30,7 @@ public class character : movementController {
 	protected override void Start () {
 
 		sir = GameObject.Find ("gameManager").GetComponent<sirGameModel> ();
+		game_manager = GameObject.Find ("gameManager").GetComponent<gameManager> ();
 
 		renderer = GetComponent<SpriteRenderer> ();
 
@@ -114,7 +118,7 @@ public class character : movementController {
 
 		if (sir.get_infected_count() > current_infect_count) {
 
-			soundController.instance.PlaySingle (infect_sound);
+			//soundController.instance.PlaySingle (infect_sound);
 
 		} 
 
@@ -174,20 +178,7 @@ public class character : movementController {
 		color_cue ();
 			
 	}
-
-	//AS ABOVE. TRY TO GET IT TO APPEAR ABOVE THE WALL AND TO HAVE IT BOUNCE OFF WALL IF PLACED POORLY
-	/**void OnMouseDrag(){
-	
-		float distance_to_screen = Camera.main.WorldToScreenPoint (gameObject.transform.position).z;
-
-		Vector3 position_move = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, 
-			                        Input.mousePosition.y, distance_to_screen));
-
-		transform.position = new Vector3 (position_move.x, position_move.y, position_move.z);
-
-
-	}**/
-
+		
 	/**
 	 *Method to vaccinate the individual. Calls the sirGameModel class's vaccinate and passes in the current
 	 *game object.
@@ -211,6 +202,12 @@ public class character : movementController {
 	void FixedUpdate(){
 
 		color_cue ();
+
+		if (game_manager.countDownDone == false) {
+		
+			return;
+		
+		}
 
 		if ((sir.get_recovered_count() == sir.get_population().Count) || 
 			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
