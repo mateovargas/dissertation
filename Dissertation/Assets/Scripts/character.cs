@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.IO;
 
 /**
@@ -16,6 +17,7 @@ public class character : movementController {
 	private string status;
 	private sirGameModel sir;
 	private gameManager game_manager;
+
 
 	float time_to_move;
 	float time_to_recover;
@@ -148,11 +150,11 @@ public class character : movementController {
 
 		if (sir.get_individual_status (this.gameObject) == "infected") {
 
-			renderer.color = Color.green;	
+			renderer.color = Color.red;	
 
 		} else if (sir.get_individual_status (this.gameObject) == "recovered") {
 		
-			renderer.color = Color.red;
+			renderer.color = Color.green;
 		
 		} else if (sir.get_individual_status (this.gameObject) == "susceptible") {
 		
@@ -213,6 +215,7 @@ public class character : movementController {
 			(sir.get_susceptible_count() + sir.get_recovered_count() == sir.get_population().Count)) {
 	
 			soundController.instance.PlaySingle (game_over_sound);
+
 			sir.set_done_flag(true);
 
 			SceneManager.LoadScene (3);

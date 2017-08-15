@@ -24,7 +24,8 @@ public class textboxManager : MonoBehaviour {
 	public SpriteRenderer sprite_renderer_two; //Sprite to render.
 
 
-	/**Method to initialize the textManager and load the text files. Checks to make sure the text file is not null or
+	/**
+	 * Method to initialize the textManager and load the text files. Checks to make sure the text file is not null or
 	 * empty and, if not, loads them into the text_lines array.
 	 * */
 	void Start () {

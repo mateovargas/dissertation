@@ -1,28 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/sirGameModel.cs">
-    <Files>
-      <File FileName="Assets/Text/SceneTwoText.txt" Line="2" Column="113" />
-      <File FileName="Assets/Scripts/character.cs" Line="124" Column="3" />
-      <File FileName="Assets/Scripts/sirGameModel.cs" Line="260" Column="3" />
-      <File FileName="Assets/Scripts/textboxManager.cs" Line="56" Column="16" />
-      <File FileName="Assets/Scripts/soundController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/menuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/movementController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/graphButtonController.cs" Line="25" Column="2" />
-      <File FileName="Assets/Scripts/graphController.cs" Line="28" Column="3" />
-      <File FileName="Assets/Scripts/boardManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/pauseController.cs" Line="46" Column="3" />
-      <File FileName="Assets/Scripts/gameManager.cs" Line="70" Column="41" />
-      <File FileName="Assets/Scripts/vaccineMenuController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/doorController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/countdownScript.cs" Line="47" Column="30" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/mateovargas/Documents/Dissertation/Dissertation/Assets/Scripts/character.cs" line="123" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
